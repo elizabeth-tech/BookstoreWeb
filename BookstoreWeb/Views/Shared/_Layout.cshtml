@@ -1,0 +1,318 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+          integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+    <link rel="stylesheet" href="styles/general.css">
+    <link rel="stylesheet" href="styles/header.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/footer.css">
+
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <!-- <link rel="stylesheet" href="styles/style.css"> -->
+
+    <title>Bookstore</title>
+
+</head>
+
+<body>
+
+    <div class="wrapper">
+
+        <!-- Header -->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 fixed-top">
+                <div class="container">
+
+                    <!-- Логотип бренда -->
+                    <div class="navbar-brand">
+                        <img src="img/logo.png" alt="" class="logo-img">
+                        <h6>Bookstore</h6>
+                    </div>
+
+                    <!-- Кнопка меню для мобильной версии -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#toggleMobileMenu" aria-controls="toggleMobileMenu" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                        <span><i id="bar" class="fas fa-bars"></i></span>
+                    </button>
+
+                    <!-- Заголовки меню, которые сворачиваются в мобильной версии -->
+                    <div class="collapse navbar-collapse justify-content-center" id="toggleMobileMenu">
+
+                        <ul class="navbar-nav ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Главная</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Бестселлеры</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Блоги</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Администратор</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Иконка корзины -->
+                    <div class="collapse navbar-collapse justify-content-end" id="toggleMobileMenu">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <!-- <span class="card-text">2 книг(и) 1000 руб.</span> -->
+                                <i class="fas fa-shopping-cart">
+                                    <span class="cart-text-title">Корзина</span>
+                                </i>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </nav>
+
+        </header>
+
+        <!-- Основной контент -->
+        <main>
+
+            <!-- Секция с новостью -->
+            <section id="home">
+                <div class="block-news container-fluid" id="text">
+                    <h5 class="text-uppercase">Новое поступление</h5>
+                    <h1><span>Лучшие цены</span> этого года</h1>
+                    <p>Мы собрали самые популярные книги в одном месте.</p>
+                </div>
+            </section>
+
+            <!-- Секция книг -->
+            <section id="featured" class="my-5 pb-5">
+
+                <!-- Заголовок -->
+                <div class="container text-center mt-5 py-5">
+                    <h3>Каталог книг</h3>
+                    <hr class="mx-auto my-line">
+                    <p>Люди перестают мыслить, когда перестают читать.</p>
+                </div>
+
+                <div class="container block-books">
+                    <div class="row">
+
+                        <!-- Сайдбар с категориями книг -->
+                        <div class="col-lg-3 bg-light mt-5">
+                            <aside>
+                                <div class="side-content">
+                                    <div class="sidebar-title">Жанры</div>
+                                    <hr>
+                                    <ul class="nav nav-pills flex-column mb-auto text-category">
+                                        <li class="nav-item">
+                                            <a href="#" class="nav-link active category">
+                                                Все книги
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link link-dark">
+                                                Фэнтези
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link link-dark">
+                                                Фэнтези
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link link-dark">
+                                                Фэнтези
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="nav-link link-dark">
+                                                Фэнтези
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <hr>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <!-- Карточки книг -->
+                        <div class="col-lg-9 mt-5">
+                            <div class="row">
+
+                                @RenderBody()
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </section>
+
+            <!-- Блок карусели с заставками -->
+            <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+                <!-- Горизонтальные линии перехода по слайдам -->
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                            aria-current="true" aria-label="Slide 1"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                            aria-label="Slide 2"></button>
+                    <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+                            aria-label="Slide 3"></button>
+                </div>
+
+                <div class="carousel-inner">
+                    <!-- Элемент карусели 1 -->
+                    <div class="carousel-item active" data-interval="50">
+                        <img src="img/slide/slide2.jpg" alt="slide">
+                        <div class="container my-carousel">
+                            <div class="carousel-caption text-start">
+                                <h1>Ликвидация отдела</h1>
+                                <p>Заходите в наш старый отдел за бесплатными журналами</p>
+                                <!-- Кнопка на картинке -->
+                                <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Элемент карусели 2 -->
+                    <div class="carousel-item" data-interval="50">
+                        <img src="img/slide/slide1.jpg" alt="slide">
+                        <div class="container my-carousel">
+                            <div class="carousel-caption">
+                                <h1>Читать - не перечитать</h1>
+                                <p>Скидки на бестселлеры и новинки</p>
+                                <!-- Кнопка на картинке -->
+                                <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Элемент карусели 3 -->
+                    <div class="carousel-item" data-interval="50">
+                        <img src="img/slide/slide3.jpg" alt="slide">
+                        <div class="container my-carousel">
+                            <div class="carousel-caption text-end">
+                                <h1>Барсик поможет выбрать книгу</h1>
+                                <p>В нашем книжном завелся новый питомец</p>
+                                <!-- Кнопка на картинке -->
+                                <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Уголки-кнопки для перехода по слайдам -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer py-5 mt-auto">
+            <div class="row container mx-auto pt-5">
+
+                <!-- Колонка с логотипом -->
+                <div class="footer-one col-lg-3 col-md-6 col-12">
+                    <img class="pt-3 footer-logo" src="img/logo2.png" alt="logo">
+                    <span class="pl-2 footer-text-logo">Bookstore</span>
+                    <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ea nostrum quae repellat porro
+                        sint quia quibusdam ipsam!
+                    </p>
+                </div>
+
+                <!-- Колонка ссылок-->
+                <div class="footer-one col-lg-3 col-md-6 col-12 mb-3">
+                    <h5>О магазине</h5>
+                    <ul class="text-uppercase list-unstyled">
+                        <li><a href="#">О нас</a></li>
+                        <li><a href="#">Программа лояльности</a></li>
+                        <li><a href="#">Акции и новости</a></li>
+                        <li><a href="#">Фотогалерея</a></li>
+                        <li><a href="#">Вакансии</a></li>
+                        <li><a href="#">События</a></li>
+                    </ul>
+                </div>
+
+                <!-- Колонка с информацией-->
+                <div class="footer-one col-lg-3 col-md-6 col-12 mb-3">
+                    <h5 class="pb-2">Свяжитесь с нами</h5>
+                    <div>
+                        <h6 class="text-uppercase">Адрес</h6>
+                        <p>123 STREET NAME CITY, US</p>
+                    </div>
+                    <div>
+                        <h6 class="text-uppercase">Телефон</h6>
+                        <p>(900) 123-454-5470</p>
+                    </div>
+                    <div>
+                        <h6 class="text-uppercase">Email</h6>
+                        <p>mysite@email.com</p>
+                    </div>
+                </div>
+
+                <!-- Колонка с инстаграмом -->
+                <div class="footer-one col-lg-3 col-md-6 col-12">
+                    <h5 class="pb-2">Instagram</h5>
+                    <div class="row">
+                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst1.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst2.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst3.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst4.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst5.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Нижний текст с копирайтом и ссылками соцсетей -->
+            <div class="copyright mt-5">
+                <div class="row container mx-auto">
+                    <div class="col-lg-3 col-md-6 col-12 mb-4">
+                        <img class="img-fluid img-payment" src="img/payment.jpg" alt="">
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12 text-nowrap mb-2">
+                        <p>© 2021 "Elizabeth-tech" Все права защищены</p>
+                    </div>
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+            crossorigin="anonymous"></script>
+
+</body>
+
+</html>
