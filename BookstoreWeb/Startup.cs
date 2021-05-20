@@ -26,7 +26,7 @@ namespace BookstoreWeb
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
-            //app.UseRouting();
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
