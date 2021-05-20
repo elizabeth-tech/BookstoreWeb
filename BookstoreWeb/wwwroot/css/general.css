@@ -1,0 +1,51 @@
+/* Шрифты */
+
+@font-face {
+    font-family: 'Conv_Montserrat-Regular';
+    src: url('../fonts/Montserrat-Regular.eot');
+    src: local('☺'), url('../fonts/Montserrat-Regular.woff') format('woff'), url('../fonts/Montserrat-Regular.ttf') format('truetype'), url('../fonts/Montserrat-Regular.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Conv_Montserrat-Medium';
+    src: url('../fonts/Montserrat-Medium.eot');
+    src: local('☺'), url('../fonts/Montserrat-Medium.woff') format('woff'), url('../fonts/Montserrat-Medium.ttf') format('truetype'), url('../fonts/Montserrat-Medium.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Conv_Montserrat-Bold';
+    src: url('../fonts/Montserrat-Bold.eot');
+    src: local('☺'), url('../fonts/Montserrat-Bold.woff') format('woff'), url('../fonts/Montserrat-Bold.ttf') format('truetype'), url('../fonts/Montserrat-Bold.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+html, body {
+    font-family: 'Conv_Montserrat-Regular';
+}
+
+/* Стиль скроллбара страницы */
+
+::-webkit-scrollbar {
+    width: 10px;
+    background-color: #f9f9fd;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgb(255, 179, 152);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(252, 150, 113);
+}
+
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    background-color: #f9f9fd;
+}

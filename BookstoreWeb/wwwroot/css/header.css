@@ -1,0 +1,92 @@
+/* Стили Header */
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.navbar-brand h6 {
+    display: inline;
+    font-family: 'Conv_Montserrat-Bold';
+}
+
+.navbar {
+    font-family: 'Conv_Montserrat-Medium';
+    font-size: 17px;
+    top: 0;
+    left: 0;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    padding: 0px 20px;
+    color: black;
+    transition: 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover, .navbar i:hover {
+    color: coral;
+}
+
+.navbar-light .navbar-nav .nav-link.active, .navbar i:active {
+    color: rgb(209, 78, 30);
+}
+
+.navbar i {
+    font-size: 1.5rem;
+    padding: 0px 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.cart-text-title {
+    font-size: 17px;
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.card-text {
+    font-size: 15px;
+    font-family: 'Conv_Montserrat-Bold';
+    padding-right: 8px;
+}
+
+#bar {
+    font-size: 1.5rem;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+    color: black;
+    border-radius: 10%;
+    box-shadow: 0 0px 15px rgba(48, 47, 47, 0.25);
+}
+
+#bar:hover, #bar:active {
+    background-color: rgb(54, 54, 54);
+    color: white;
+}
+
+/* Мобильная версия Header */
+
+@media only screen and (max-width: 991px) {
+    #toggleMobileMenu>ul {
+        margin: 1rem;
+        justify-content: flex-end;
+        align-items: flex-end;
+        text-align: right;
+    }
+    #toggleMobileMenu>ul>li:nth-child(n)>a {
+        padding: 7px 0;
+    }
+}
+
+.navbar-light .navbar-toggler {
+    border: none;
+    outline: none;
+}
+
+.navbar-toggler:focus, .navbar-toggler:active, .navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+}

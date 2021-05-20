@@ -1,0 +1,44 @@
+/* Основной стиль */
+
+body {
+    padding: 0;
+    margin: 0;
+    padding-top: 150px;
+    background-color: rgb(247, 247, 247);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/*  Стиль основной части */
+
+.sign-in {
+    padding-bottom: 200px;
+    padding-top: 50px;
+}
+
+.form-floating {
+    padding-bottom: 20px;
+}
+
+.signin-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+    padding: 3px 30px;
+    border: 2px solid coral;
+    background-color: coral;
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.signin-btn:hover {
+    border: 2px solid rgb(250, 138, 97);
+    background-color: rgb(250, 138, 97);
+    color: black;
+}

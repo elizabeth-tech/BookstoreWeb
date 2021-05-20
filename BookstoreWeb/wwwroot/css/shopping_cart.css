@@ -1,0 +1,94 @@
+/* Основной контент */
+
+body {
+    padding: 0;
+    margin: 0;
+    padding-top: 150px;
+    background-color: rgb(247, 247, 247);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Стили таблицы */
+
+.main-title {
+    padding-top: 30px;
+    padding-bottom: 50px;
+}
+
+.table-title {
+    font-family: 'Conv_Montserrat-Bold';
+    font-size: 18px;
+}
+
+.table-product {
+    margin-bottom: 250px;
+}
+
+.delete-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    padding: 3px 20px;
+    border: 2px solid rgb(255, 92, 80);
+    background-color: rgb(255, 92, 80);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.delete-btn:hover {
+    border: 2px solid rgb(255, 136, 127);
+    background-color: rgb(255, 136, 127);
+    color: black;
+}
+
+/* Кнопки */
+
+.block-btn {
+    margin: 100px 0px 0px 0px;
+}
+
+.back-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 16px;
+    padding: 4px 23px;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.back-btn:hover {
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+}
+
+.order-btn {
+    margin-right: 15px;
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 16px;
+    padding: 4px 23px;
+    border: 2px solid rgb(255, 110, 57);
+    background-color: rgb(255, 110, 57);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.order-btn:hover {
+    border: 2px solid rgb(255, 137, 94);
+    background-color: rgb(255, 137, 94);
+    color: black;
+}

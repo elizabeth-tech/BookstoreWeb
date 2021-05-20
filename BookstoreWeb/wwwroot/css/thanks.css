@@ -1,0 +1,44 @@
+/* Основной контент */
+
+body {
+    padding: 0;
+    margin: 0;
+    padding-top: 150px;
+    background-color: rgb(247, 247, 247);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Стиль основной части */
+
+.main-block {
+    padding-top: 100px;
+    padding-bottom: 230px;
+}
+
+h3 {
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.back-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+    padding: 6px 30px;
+    border: 2px solid coral;
+    background-color: coral;
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.back-btn:hover {
+    border: 2px solid rgb(255, 140, 98);
+    background-color: rgb(255, 140, 98);
+    color: black;
+}

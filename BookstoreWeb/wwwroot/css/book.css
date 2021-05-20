@@ -1,0 +1,89 @@
+/* Основной стиль */
+
+body {
+    padding: 0;
+    margin: 0;
+    padding-top: 150px;
+    background-color: rgb(247, 247, 247);
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Стиль контента */
+
+.book-title {
+    font-family: 'Conv_Montserrat-Bold';
+}
+
+.description {
+    font-family: 'Conv_Montserrat-Medium';
+    padding-left: 40px;
+    padding-top: 20px;
+}
+
+table tr th {
+    width: 25%;
+}
+
+table tr td {
+    width: 25%;
+}
+
+.buy-block {
+    padding-top: 30px;
+}
+
+.buy-block-style {
+    font-family: 'Conv_Montserrat-Medium';
+    background-color: rgb(255, 240, 221);
+    min-width: 300px;
+    min-height: 200px;
+    border-radius: 5%;
+}
+
+.block-text {
+    padding-top: 50px;
+}
+
+.price {
+    font-family: 'Conv_Montserrat-Bold';
+    font-size: 26px;
+}
+
+.block-btn {
+    padding-top: 20px;
+}
+
+.cart-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 18px;
+    padding: 3px 20px;
+    border: 2px solid coral;
+    background-color: coral;
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.cart-btn:hover {
+    border: 2px solid rgb(250, 138, 97);
+    background-color: rgb(250, 138, 97);
+    color: black;
+}
+
+.annotation-title {
+    font-family: 'Conv_Montserrat-Medium';
+    padding-top: 50px;
+}
+
+.annotation-text{
+    padding-top: 20px;
+    line-height: 28px;
+    padding-bottom: 90px;
+}
