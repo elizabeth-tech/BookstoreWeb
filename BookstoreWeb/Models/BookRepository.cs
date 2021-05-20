@@ -9,7 +9,7 @@ namespace BookstoreWeb.Models
     {
         private readonly BookstoreDbContext context;
 
-        public IQueryable<Book> Books => context.Books.Include(i => i.Category);
+        public IQueryable<Book> Books => context.Books;
 
         public BookRepository(BookstoreDbContext context) => this.context = context;
 

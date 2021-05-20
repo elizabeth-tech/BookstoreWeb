@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Book>
-
+﻿@model BooksListViewModel
 
 <!-- Сайдбар с категориями книг -->
 <div class="col-lg-3 bg-light mt-5">
@@ -8,11 +7,11 @@
             <div class="sidebar-title">Жанры</div>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto text-category">
-                @foreach (var book in Model)
+                @foreach (var category in Model.Categories)
                 {
                     <li>
                         <a href="#" class="nav-link link-dark">
-                            @book.Category.Name
+                            @category.Name
                         </a>
                     </li>
                 }
@@ -27,7 +26,7 @@
     <div class="row">
 
         <!-- Карточка книги -->
-        @foreach (var book in Model)
+        @foreach (var book in Model.Books)
         {
             <div class="col-lg-3 col-sm-6">
                 <div class="product text-center">
@@ -44,15 +43,15 @@
             </div>
         }
 
+        <!-- Страницы перехода по книгам -->
+        <div class="page-block">
+            <div page-model="@Model.PagingInfo"
+                 page-action="Index"
+                 class="btn-books-page">
+            </div>
+        </div>
+
     </div>
 </div>
 
-<!-- Страницы перехода по книгам -->
-<div class="page-block">
-    <div class="btn-books-page">
-        <a href="">1</a>
-        <a href="">2</a>
-        <a href="">3</a>
-        <a href="">4</a>
-    </div>
-</div>
+

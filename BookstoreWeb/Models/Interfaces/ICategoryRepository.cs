@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BookstoreWeb.Models.Interfaces
 {
-    interface ICategoryRepository
+    public interface ICategoryRepository
     {
         IQueryable<Category> Categories { get; }
     }
