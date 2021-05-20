@@ -44,6 +44,9 @@ namespace BookstoreWeb
                 // Стандартный путь "{controller=Home}/{action=Index}/{id?}"
                 endpoints.MapDefaultControllerRoute();
             });
+
+            BookstoreInitializer initializer = new BookstoreInitializer();
+            initializer.Initialize(app);
         }
     }
 }

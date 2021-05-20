@@ -1,5 +1,6 @@
 ﻿using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace BookstoreWeb.Models
@@ -8,7 +9,7 @@ namespace BookstoreWeb.Models
     {
         private readonly BookstoreDbContext context;
 
-        public IQueryable<Book> Books => context.Books;
+        public IQueryable<Book> Books => context.Books.Include(i => i.Category);
 
         public BookRepository(BookstoreDbContext context) => this.context = context;
 

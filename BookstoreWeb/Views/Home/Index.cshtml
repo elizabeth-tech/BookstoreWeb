@@ -1,140 +1,53 @@
-﻿<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book1.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
+﻿@model IEnumerable<Book>
+
+
+<!-- Сайдбар с категориями книг -->
+<div class="col-lg-3 bg-light mt-5">
+    <aside>
+        <div class="side-content">
+            <div class="sidebar-title">Жанры</div>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto text-category">
+                @foreach (var book in Model)
+                {
+                    <li>
+                        <a href="#" class="nav-link link-dark">
+                            @book.Category.Name
+                        </a>
+                    </li>
+                }
+            </ul>
+            <hr>
         </div>
-    </div>
+    </aside>
 </div>
 
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book2.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
+<!-- Карточки книг -->
+<div class="col-lg-9 mt-5">
+    <div class="row">
 
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book3.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
+        <!-- Карточка книги -->
+        @foreach (var book in Model)
+        {
+            <div class="col-lg-3 col-sm-6">
+                <div class="product text-center">
+                    <img class="card-img-top" alt="book" src="/img/books/book1.jpg">
+                    <div class="card-body">
+                        @book.Author <p class="card-title">@book.Name</p>
+                        <h5 class="p-price">@book.Price</h5>
+                        <div style="flex-wrap: wrap;">
+                            <button class="buy-btn">В корзину</button>
+                            <button class="read-btn">Подробней</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        }
 
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book4.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book5.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book6.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book7.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book1.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Карточка -->
-<div class="col-lg-3 col-sm-6 ">
-    <div class="product text-center">
-        <img class="card-img-top" alt="book" src="/img/books/book5.jpg">
-        <div class="card-body">
-            Автор <p class="card-title">Название книги</p>
-            <h5 class="p-price">345 руб.</h5>
-            <div style="flex-wrap: wrap;">
-                <button class="buy-btn">В корзину</button>
-                <button class="read-btn">Подробней</button>
-            </div>
-        </div>
     </div>
 </div>
 
 <!-- Страницы перехода по книгам -->
-
 <div class="page-block">
     <div class="btn-books-page">
         <a href="">1</a>
