@@ -1,6 +1,5 @@
 ﻿using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
-using System.Collections.Generic;
 using System.Linq;
 
 namespace BookstoreWeb.Models
@@ -11,9 +10,9 @@ namespace BookstoreWeb.Models
 
         public IQueryable<Book> Books => context.Books;
 
-        public BookstoreRepository(BookstoreDbContext context) => this.context = context;
+        public BookRepository(BookstoreDbContext context) => this.context = context;
 
-        public void SaveBook(Book book) => context.SaveChanges();
+        public void SaveBook() => context.SaveChanges();
 
         public void CreateBook(Book book)
         {
