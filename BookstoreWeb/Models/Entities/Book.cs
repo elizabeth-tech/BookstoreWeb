@@ -1,4 +1,6 @@
-﻿namespace BookstoreWeb.Models.Entities
+﻿using System.ComponentModel.DataAnnotations.Schema;
+
+namespace BookstoreWeb.Models.Entities
 {
     public class Book
     {
@@ -10,6 +12,7 @@
 
         public string Annotation { get; set; }
 
+        [Column(TypeName = "decimal(8, 2)")] // Указываем, что в БД будет хранится 18 знаков до, и 4 знака после запятой
         public decimal Price { get; set; }
 
         public string Publisher { get; set; } // Издательство
