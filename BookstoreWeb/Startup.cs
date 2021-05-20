@@ -3,6 +3,8 @@ using BookstoreWeb.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -10,9 +12,17 @@ namespace BookstoreWeb
 {
     public class Startup
     {
+        private IConfiguration Configuration { get; }
+
+        public Startup(IConfiguration configuration) => Configuration = configuration;
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddDbContext<BookstoreDbContext>(opts => {
+                opts.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]);
+            });
 
             // Добавление служб репозиториев
             services.AddScoped<IBookRepository, BookRepository>();
