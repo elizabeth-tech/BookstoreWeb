@@ -19,17 +19,13 @@ namespace BookstoreWeb.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        public ViewResult Index(int bookPage = 1)
+        public ViewResult Index(string category, int bookPage = 1)
         {
-            //return View(bookRepository.Books
-            //    .OrderBy(b => b.Id)
-            //    .Skip((bookPage - 1) * PageSize)
-            //    .Take(PageSize));
-
             return View(new BooksListViewModel {                
                 Categories = categoryRepository.Categories,
 
                 Books = bookRepository.Books
+                .Where(b => category == null || b.Category.Name == category)
                 .OrderBy(b => b.Id)
                 .Skip((bookPage - 1) * PageSize)
                 .Take(PageSize),
@@ -38,8 +34,10 @@ namespace BookstoreWeb.Controllers
                 {
                     CurrentPage = bookPage,
                     ItemsPerPage = PageSize,
-                    TotalItems = bookRepository.Books.Count()
-                }
+                    TotalItems = category == null ? bookRepository.Books.Count() : bookRepository.Books.Where(e => e.Category.Name == category).Count()
+                },
+
+                CurrentCategory = category
             });
         }
     }

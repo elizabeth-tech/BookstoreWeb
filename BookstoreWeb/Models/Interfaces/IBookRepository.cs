@@ -1,10 +1,10 @@
 ﻿using BookstoreWeb.Models.Entities;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace BookstoreWeb.Models.Interfaces
 {
     public interface IBookRepository
     {
-        IQueryable<Book> Books { get; }
+        IEnumerable<Book> Books { get; }
     }
 }

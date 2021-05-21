@@ -1,26 +1,5 @@
 ﻿@model BooksListViewModel
 
-<!-- Сайдбар с категориями книг -->
-<div class="col-lg-3 bg-light mt-5">
-    <aside>
-        <div class="side-content">
-            <div class="sidebar-title">Жанры</div>
-            <hr>
-            <ul class="nav nav-pills flex-column mb-auto text-category">
-                @foreach (var category in Model.Categories)
-                {
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            @category.Name
-                        </a>
-                    </li>
-                }
-            </ul>
-            <hr>
-        </div>
-    </aside>
-</div>
-
 <!-- Карточки книг -->
 <div class="col-lg-9 mt-5">
     <div class="row">

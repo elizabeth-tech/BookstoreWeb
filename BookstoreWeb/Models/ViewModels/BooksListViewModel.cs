@@ -1,13 +1,13 @@
 ﻿using BookstoreWeb.Models.Entities;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace BookstoreWeb.Models.ViewModels
 {
     public class BooksListViewModel
     {
-        public IQueryable<Book> Books { get; set; }
+        public IEnumerable<Book> Books { get; set; }
 
-        public IQueryable<Category> Categories { get; set; }
+        public IEnumerable<Category> Categories { get; set; }
 
         public PagingInfo PagingInfo { get; set; }
 

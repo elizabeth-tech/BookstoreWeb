@@ -36,7 +36,7 @@
 
                     <!-- Логотип бренда -->
                     <div class="navbar-brand">
-                        <img src="img/logo.png" alt="" class="logo-img">
+                        <img src="~/img/logo.png" alt="logo" class="logo-img">
                         <h6>Bookstore</h6>
                     </div>
 
@@ -109,6 +109,23 @@
                 <div class="container block-books">
                     <div class="row">
 
+                        <!-- Сайдбар с категориями книг -->
+                        <div class="col-lg-3 bg-light mt-5">
+                            <aside>
+                                <div class="side-content">
+                                    <div class="sidebar-title">Жанры</div>
+                                    <hr>
+
+                                    <!-- Сайдбар категорий -->
+                                    <!-- Применяем компонент представлений -->
+                                    <vc:categories-menu />
+
+                                    <hr>
+                                </div>
+                            </aside>
+                        </div>
+
+                        <!-- Карточки книг и страницы -->
                         @RenderBody()
 
                     </div>
@@ -132,7 +149,7 @@
                 <div class="carousel-inner">
                     <!-- Элемент карусели 1 -->
                     <div class="carousel-item active" data-interval="50">
-                        <img src="img/slide/slide2.jpg" alt="slide">
+                        <img src="~/img/slide/slide2.jpg" alt="slide">
                         <div class="container my-carousel">
                             <div class="carousel-caption text-start">
                                 <h1>Ликвидация отдела</h1>
@@ -145,7 +162,7 @@
 
                     <!-- Элемент карусели 2 -->
                     <div class="carousel-item" data-interval="50">
-                        <img src="img/slide/slide1.jpg" alt="slide">
+                        <img src="~/img/slide/slide1.jpg" alt="slide">
                         <div class="container my-carousel">
                             <div class="carousel-caption">
                                 <h1>Читать - не перечитать</h1>
@@ -158,7 +175,7 @@
 
                     <!-- Элемент карусели 3 -->
                     <div class="carousel-item" data-interval="50">
-                        <img src="img/slide/slide3.jpg" alt="slide">
+                        <img src="~/img/slide/slide3.jpg" alt="slide">
                         <div class="container my-carousel">
                             <div class="carousel-caption text-end">
                                 <h1>Барсик поможет выбрать книгу</h1>
@@ -189,7 +206,7 @@
 
                 <!-- Колонка с логотипом -->
                 <div class="footer-one col-lg-3 col-md-6 col-12">
-                    <img class="pt-3 footer-logo" src="img/logo2.png" alt="logo">
+                    <img class="pt-3 footer-logo" src="~/img/logo2.png" alt="logo">
                     <span class="pl-2 footer-text-logo">Bookstore</span>
                     <p>
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe ea nostrum quae repellat porro
@@ -231,11 +248,11 @@
                 <div class="footer-one col-lg-3 col-md-6 col-12">
                     <h5 class="pb-2">Instagram</h5>
                     <div class="row">
-                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst1.jpg" alt="">
-                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst2.jpg" alt="">
-                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst3.jpg" alt="">
-                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst4.jpg" alt="">
-                        <img class="img-fluid w-25 h-100 m-2" src="img/instagram/inst5.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="~/img/instagram/inst1.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="~/img/instagram/inst2.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="~/img/instagram/inst3.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="~/img/instagram/inst4.jpg" alt="">
+                        <img class="img-fluid w-25 h-100 m-2" src="~/img/instagram/inst5.jpg" alt="">
                     </div>
                 </div>
             </div>
@@ -244,7 +261,7 @@
             <div class="copyright mt-5">
                 <div class="row container mx-auto">
                     <div class="col-lg-3 col-md-6 col-12 mb-4">
-                        <img class="img-fluid img-payment" src="img/payment.jpg" alt="">
+                        <img class="img-fluid img-payment" src="~/img/payment.jpg" alt="">
                     </div>
                     <div class="col-lg-4 col-md-6 col-12 text-nowrap mb-2">
                         <p>© 2021 "Elizabeth-tech" Все права защищены</p>

@@ -64,16 +64,34 @@ hr.my-line {
     font-family: 'Conv_Montserrat-Medium';
 }
 
-.nav-link.active.category {
+li.nav-link.active.category {
+    cursor: pointer;
     background-color: rgb(253, 115, 64);
+    text-decoration: none;
+    color: white;
 }
 
-.nav-link.active.category:hover {
+li.nav-link.active.category a{
+    cursor: pointer;
+    text-decoration: none;
+    color: white;
+}
+
+li.nav-link.active.category:hover{
+    cursor: pointer;
     background-color: rgb(255, 135, 92);
+    color: black;
+    text-decoration: none;
+}
+
+.nav-link.link-dark a {
+    cursor: pointer;
+    text-decoration: none;
     color: black;
 }
 
 .nav-link.link-dark:hover {
+    cursor: pointer;
     background-color: rgb(255, 181, 154);
 }
 

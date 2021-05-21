@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Category>
+
+<!-- В элементах <а> атрибут href содержит URL, выбирающий определенную категорию товаров -->
+<ul class="nav nav-pills flex-column mb-auto text-category">
+    <li class="nav-item">
+        <a class="nav-link link-dark"
+           asp-action="Index"
+           asp-controller="Home"
+           asp-route-category="">Все книги</a>
+    </li>
+    @foreach (var category in Model)
+    {
+        <li class="nav-link @(category.Name == ViewBag.SelectedCategory ? "active category" : "link-dark")">
+            <a asp-action="Index"
+               asp-controller="Home"
+               asp-route-category="@category.Name"
+               asp-route-bookPage="1">
+                @category.Name
+            </a>
+        </li>
+    }
+</ul>

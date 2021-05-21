@@ -41,6 +41,18 @@ namespace BookstoreWeb
 
             app.UseEndpoints(endpoints =>
             {
+                // Выводит указанную страницу книг заданного жанра (/Драма/Page2) +
+                endpoints.MapControllerRoute("catpage", "{category}/Page{bookPage:int}",
+                   new { Controller = "Home", action = "Index" });
+
+                // Выводит первую страницу списка книг всех жанров (Раge1) +
+                endpoints.MapControllerRoute("page", "Page{bookPage:int}",
+                    new { Controller = "Home", action = "Index", bookPage = 1 });
+
+                // Выводит первую страницу книг указанного жанра (/Драма) +
+                endpoints.MapControllerRoute("category", "{category}",
+                    new { Controller = "Home", action = "Index", bookPage = 1 });
+
                 // Выводит первую страницу, отображая книги всех жанров (/Page1) -
                 endpoints.MapControllerRoute("pagination", "Page{bookPage}",
                     new { Controller = "Home", action = "Index", bookPage = 1 });
@@ -49,6 +61,7 @@ namespace BookstoreWeb
                 endpoints.MapDefaultControllerRoute();
             });
 
+            // Заполнение БД искусственными данными
             BookstoreInitializer initializer = new BookstoreInitializer();
             initializer.Initialize(app);
         }

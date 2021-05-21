@@ -1,6 +1,6 @@
 ﻿using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
-using System.Linq;
+using System.Collections.Generic;
 
 namespace BookstoreWeb.Models
 {
@@ -8,7 +8,7 @@ namespace BookstoreWeb.Models
     {
         private readonly BookstoreDbContext context;
 
-        public IQueryable<Category> Categories => context.Categories;
+        public IEnumerable<Category> Categories => context.Categories;
 
         public CategoryRepository(BookstoreDbContext context) => this.context = context;
     }
