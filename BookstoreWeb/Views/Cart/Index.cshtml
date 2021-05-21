@@ -5,7 +5,7 @@
 <!-- Корзина покупателя -->
 <main>
     <div class="container">
-        <div class="table-product">
+        <div>
 
             <!-- Заголовок -->
             <div class="main-title">
@@ -32,7 +32,7 @@
                             <td>@line.Book.Name</td>
                             <td>@line.Book.Category.Name</td>
                             <td>@line.Quantity</td>
-                            <td>@line.Book.Price.ToString("c")</td>
+                            <td>@((line.Quantity * line.Book.Price).ToString("c"))</td>
                             <td>
                                 <button class="delete-btn" type="submit">Удалить</button>
                             </td>
@@ -52,12 +52,18 @@
 
             </table>
 
-
-            <div class="text-center block-btn">
-                <button class="order-btn" type="submit">Заказать все</button>
-                <form action="/">
-                    <button class="back-btn">На главную</button>
-                </form>
+            <!-- Кнопки -->
+            <div class="row justify-content-center block-btn">
+                <div class="col-lg-3 col-md-4 col-sm-6 text-end">
+                    <form>
+                        <button class="order-btn" type="submit">Заказать все</button>
+                    </form>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-6 text-start">
+                    <form action="/">
+                        <button class="back-btn" type="submit">На главную</button>
+                    </form>
+                </div>
             </div>
 
 

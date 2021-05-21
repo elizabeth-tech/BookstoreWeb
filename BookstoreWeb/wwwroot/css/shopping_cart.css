@@ -25,10 +25,6 @@ body {
     font-size: 18px;
 }
 
-.table-product {
-    margin-bottom: 250px;
-}
-
 .delete-btn {
     font-family: 'Conv_Montserrat-Medium';
     text-decoration: none;
@@ -60,7 +56,7 @@ body {
 /* Кнопки */
 
 .block-btn {
-    margin: 100px 0px 0px 0px;
+    margin: 70px 0px 220px 0px;
 }
 
 .back-btn {
@@ -83,7 +79,6 @@ body {
 }
 
 .order-btn {
-    margin-right: 15px;
     font-family: 'Conv_Montserrat-Medium';
     text-decoration: none;
     outline: none;
