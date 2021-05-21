@@ -1,0 +1,33 @@
+﻿ @model Book
+
+<!-- Карточка книги -->
+<div class="col-lg-3 col-sm-6">
+    <div class="product text-center">
+        @{
+            string data = Convert.ToBase64String(Model.Image);
+            string imgDataURL = string.Format("data:image/jpg;base64,{0}", data);
+        }
+        <img class="card-img-top" alt="book" src="@imgDataURL">
+        <div class="card-body">
+            @Model.Author <p class="card-title">@Model.Name</p>
+            <h5 class="p-price">@Model.Price.ToString("c")</h5>
+            <div style="flex-wrap: wrap;">
+
+                <!-- Кнопка В корзину -->
+                <form id="@Model.Id" asp-action="AddToCart" asp-controller="Cart" method="post">
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" name="returnUrl"
+                           value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                    <button type="submit" class="buy-btn">В корзину</button>
+                </form>
+
+                <!-- Кнопка Подробней -->
+                <form id="@Model.Id" asp-page="/Description" method="post">
+                    <input type="hidden" asp-for="@Model.Id" />
+                    <button type="submit" class="read-btn">Подробней</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

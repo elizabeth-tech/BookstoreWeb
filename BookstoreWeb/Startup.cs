@@ -1,7 +1,9 @@
 using BookstoreWeb.Models;
+using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +28,14 @@ namespace BookstoreWeb
             // Добавление служб репозиториев
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+
+            // Включение поддержки сеансов
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+
+            // Для удовлетворения связанных запросов к экземплярам Cart должен применяться один и тот же объект
+            services.AddScoped(sp => SessionCart.GetCart(sp));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,6 +47,7 @@ namespace BookstoreWeb
 
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseSession();
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>

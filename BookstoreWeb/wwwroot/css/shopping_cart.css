@@ -48,6 +48,15 @@ body {
     color: black;
 }
 
+.footer-text {
+    font-family: 'Conv_Montserrat-Bold';
+    font-size: 18px;
+}
+
+.total-text {
+    padding-right: 8px;
+}
+
 /* Кнопки */
 
 .block-btn {

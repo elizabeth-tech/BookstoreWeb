@@ -47,7 +47,7 @@ namespace BookstoreWeb.Models
         {
             var rnd = new Random();
             byte[] imageBytes = File.ReadAllBytes(@"wwwroot\img\book.jpg");
-            int booksCount = 30;
+            int booksCount = 50;
 
             Book[] books = Enumerable.Range(1, booksCount)
                .Select(i => new Book

@@ -1,0 +1,68 @@
+﻿@model CartIndexViewModel
+
+<link rel="stylesheet" href="~/css/shopping_cart.css">
+
+<!-- Корзина покупателя -->
+<main>
+    <div class="container">
+        <div class="table-product">
+
+            <!-- Заголовок -->
+            <div class="main-title">
+                <h4>Корзина покупателя</h4>
+            </div>
+
+            <!-- Таблица с товарами покупателя -->
+            <table class="table table-hover">
+                <thead class="table-title">
+                    <tr>
+                        <th>Автор</th>
+                        <th>Название книги</th>
+                        <th>Категория</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var line in Model.Cart.Lines)
+                    {
+                        <tr>
+                            <td>@line.Book.Author</td>
+                            <td>@line.Book.Name</td>
+                            <td>@line.Book.Category.Name</td>
+                            <td>@line.Quantity</td>
+                            <td>@line.Book.Price.ToString("c")</td>
+                            <td>
+                                <button class="delete-btn" type="submit">Удалить</button>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+                <tfoot>
+                    <tr class="table-active">
+                        <td colspan="4"></td>
+                        <td class="footer-text">
+                            <span class="total-text">Итог:</span>
+                            @Model.Cart.ComputeTotalValue().ToString("c")
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+
+            <div class="text-center block-btn">
+                <button class="order-btn" type="submit">Заказать все</button>
+                <form action="/">
+                    <button class="back-btn">На главную</button>
+                </form>
+            </div>
+
+
+        </div>
+
+    </div>
+
+</main>

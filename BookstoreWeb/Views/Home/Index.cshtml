@@ -1,42 +1,146 @@
 ﻿@model BooksListViewModel
 
-<!-- Карточки книг -->
-<div class="col-lg-9 mt-5">
-    <div class="row">
+<link rel="stylesheet" href="~/css/main.css">
 
-        <!-- Карточка книги -->
-        @foreach (var book in Model.Books)
-        {
-            <div class="col-lg-3 col-sm-6">
-                <div class="product text-center">
-                    @{
-                        string data = Convert.ToBase64String(book.Image);
-                        string imgDataURL = string.Format("data:image/jpg;base64,{0}", data);
-                    }
-                    <img class="card-img-top" alt="book" src="@imgDataURL">
-                    <div class="card-body">
-                        @book.Author <p class="card-title">@book.Name</p>
-                        <h5 class="p-price">@book.Price.ToString("c")</h5>
-                        <div style="flex-wrap: wrap;">
-                            <button class="buy-btn">В корзину</button>
-                            <button class="read-btn">Подробней</button>
+
+<!-- Основной контент -->
+<main>
+
+    <!-- Секция с новостью -->
+    <section id="home">
+        <div class="block-news container-fluid" id="text">
+            <h5 class="text-uppercase">Новое поступление</h5>
+            <h1><span>Лучшие цены</span> этого года</h1>
+            <p>Мы собрали самые популярные книги в одном месте.</p>
+        </div>
+    </section>
+
+    <!-- Секция книг -->
+    <section id="featured" class="my-5 pb-5">
+
+        <!-- Заголовок -->
+        <div class="container text-center mt-5 py-5">
+            <h3>Каталог книг</h3>
+            <hr class="mx-auto my-line">
+            <p>Люди перестают мыслить, когда перестают читать.</p>
+        </div>
+
+        <!-- Сайдбар, карточки книг и страницы -->
+        <div class="container block-books">
+            <div class="row">
+
+                <!-- Сайдбар с категориями книг -->
+                <div class="col-lg-3 bg-light mt-5">
+                    <aside>
+                        <div class="side-content">
+                            <div class="sidebar-title">Жанры</div>
+                            <hr>
+
+                            <!-- Сайдбар категорий -->
+                            <!-- Применяем компонент представлений -->
+                            <vc:categories-menu />
+
+                            <hr>
                         </div>
+                    </aside>
+                </div>
+
+                <!-- Карточки книг -->
+                <div class="col-lg-9 mt-5">
+                    <div class="row">
+
+                        @foreach (var book in Model.Books)
+                        {
+                            <!-- Подключение частичного представления -->
+                            <!-- Карточка книги -->
+                            <partial name="BooksList" model="book" />
+                        }
+
+                        <!-- Страницы перехода по книгам -->
+                        <div page-model="@Model.PagingInfo"
+                             page-action="Index"
+                             page-classes-enabled="true"
+                             page-class-normal="btn-books-page"
+                             page-class-selected="btn-books-page-active"
+                             page-url-category="@Model.CurrentCategory"
+                             class="page-block">
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- Блок карусели с заставками -->
+    <div id="myCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+        <!-- Горизонтальные линии перехода по слайдам -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1"
+                    aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2"
+                    aria-label="Slide 3"></button>
+        </div>
+
+        <div class="carousel-inner">
+            <!-- Элемент карусели 1 -->
+            <div class="carousel-item active" data-interval="50">
+                <img src="~/img/slide/slide2.jpg" alt="slide">
+                <div class="container my-carousel">
+                    <div class="carousel-caption text-start">
+                        <h1>Ликвидация отдела</h1>
+                        <p>Заходите в наш старый отдел за бесплатными журналами</p>
+                        <!-- Кнопка на картинке -->
+                        <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
                     </div>
                 </div>
             </div>
-        }
 
-        <!-- Страницы перехода по книгам -->
-        <div page-model="@Model.PagingInfo"
-             page-action="Index"
-             page-classes-enabled="true"
-             page-class-normal="btn-books-page"
-             page-class-selected="btn-books-page-active"
-             page-url-category="@Model.CurrentCategory"
-             class="page-block">
+            <!-- Элемент карусели 2 -->
+            <div class="carousel-item" data-interval="50">
+                <img src="~/img/slide/slide1.jpg" alt="slide">
+                <div class="container my-carousel">
+                    <div class="carousel-caption">
+                        <h1>Читать - не перечитать</h1>
+                        <p>Скидки на бестселлеры и новинки</p>
+                        <!-- Кнопка на картинке -->
+                        <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Элемент карусели 3 -->
+            <div class="carousel-item" data-interval="50">
+                <img src="~/img/slide/slide3.jpg" alt="slide">
+                <div class="container my-carousel">
+                    <div class="carousel-caption text-end">
+                        <h1>Барсик поможет выбрать книгу</h1>
+                        <p>В нашем книжном завелся новый питомец</p>
+                        <!-- Кнопка на картинке -->
+                        <p><a class="btn btn-lg btn-carousel" href="#">Узнать больше</a></p>
+                    </div>
+                </div>
+            </div>
         </div>
 
+        <!-- Уголки-кнопки для перехода по слайдам -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
     </div>
-</div>
+
+</main>
+
+
 
 
