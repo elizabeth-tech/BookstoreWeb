@@ -34,7 +34,13 @@
                             <td>@line.Quantity</td>
                             <td>@((line.Quantity * line.Book.Price).ToString("c"))</td>
                             <td>
-                                <button class="delete-btn" type="submit">Удалить</button>
+                                <form asp-action="RemoveFromCart" method="post">
+                                    <input type="hidden" name="Id"
+                                           value="@line.Book.Id" />
+                                    <input type="hidden" name="returnUrl"
+                                           value="@Model.ReturnUrl" />
+                                    <button class="delete-btn" type="submit">Удалить</button>
+                                </form>
                             </td>
                         </tr>
                     }
