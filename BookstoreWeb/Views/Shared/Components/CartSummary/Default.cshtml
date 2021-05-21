@@ -1,0 +1,21 @@
+﻿@model Cart
+
+@if (Model.Lines.Count() > 0)
+{
+    <span class="card-text">
+        @Model.Lines.Sum(x => x.Quantity) книг(и)
+        @Model.ComputeTotalValue().ToString("c")
+    </span>
+}
+
+<a class="cart-style" 
+   asp-controller="Cart"
+   asp-action="Index"
+   asp-route-returnurl="@ViewContext.HttpContext.Request.PathAndQuery()">
+    <i class="fas fa-shopping-cart">
+        <span class="cart-text-title">Корзина</span>
+    </i>
+</a>
+
+
+

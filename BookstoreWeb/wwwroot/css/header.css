@@ -40,6 +40,10 @@
     transition: 0.3s ease;
 }
 
+.cart-style {
+    color: black;
+}
+
 .cart-text-title {
     font-size: 17px;
     font-family: 'Conv_Montserrat-Medium';
