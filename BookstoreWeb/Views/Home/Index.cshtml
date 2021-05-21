@@ -30,10 +30,14 @@
         {
             <div class="col-lg-3 col-sm-6">
                 <div class="product text-center">
-                    <img class="card-img-top" alt="book" src="/img/books/book1.jpg">
+                    @{
+                        string data = Convert.ToBase64String(book.Image);
+                        string imgDataURL = string.Format("data:image/jpg;base64,{0}", data);
+                    }
+                    <img class="card-img-top" alt="book" src="@imgDataURL">
                     <div class="card-body">
                         @book.Author <p class="card-title">@book.Name</p>
-                        <h5 class="p-price">@book.Price</h5>
+                        <h5 class="p-price">@book.Price.ToString("c")</h5>
                         <div style="flex-wrap: wrap;">
                             <button class="buy-btn">В корзину</button>
                             <button class="read-btn">Подробней</button>
@@ -44,11 +48,13 @@
         }
 
         <!-- Страницы перехода по книгам -->
-        <div class="page-block">
-            <div page-model="@Model.PagingInfo"
-                 page-action="Index"
-                 class="btn-books-page">
-            </div>
+        <div page-model="@Model.PagingInfo"
+             page-action="Index"
+             page-classes-enabled="true"
+             page-class-normal="btn-books-page"
+             page-class-selected="btn-books-page-active"
+             page-url-category="@Model.CurrentCategory"
+             class="page-block">
         </div>
 
     </div>

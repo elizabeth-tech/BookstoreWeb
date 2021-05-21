@@ -41,6 +41,10 @@ namespace BookstoreWeb
 
             app.UseEndpoints(endpoints =>
             {
+                // Выводит первую страницу, отображая книги всех жанров (/Page1) -
+                endpoints.MapControllerRoute("pagination", "Page{bookPage}",
+                    new { Controller = "Home", action = "Index", bookPage = 1 });
+
                 // Стандартный путь "{controller=Home}/{action=Index}/{id?}"
                 endpoints.MapDefaultControllerRoute();
             });
