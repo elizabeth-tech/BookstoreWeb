@@ -16,21 +16,21 @@
             <!-- Блок формы с полями для заполнения -->
             <div class="row justify-content-md-center">
                 <div class="col-lg-6">
-                    <form class="needs-validation" novalidate>
+                    <form class="needs-validation" asp-action="Checkout" method="post" novalidate>
 
                         <!-- Строка 1 -->
                         <div class="row justify-content-md-center mb-4">
                             <div class="col-md-6">
                                 <!-- Имя -->
                                 <label for="FirstName" class="form-label">Имя</label>
-                                <input class="form-control" type="text" id="FirstName" placeholder="Иван" required>
+                                <input class="form-control" asp-for="Name" type="text" id="FirstName" placeholder="Иван" required>
                                 <div class="invalid-feedback">Пожалуйста, укажите свое имя</div>
                                 <div class="valid-feedback">Ок!</div>
                             </div>
                             <!-- Фамилия -->
                             <div class="col-md-6">
                                 <label for="LastName" class="form-label">Фамилия</label>
-                                <input class="form-control" type="text" id="LastName" placeholder="Иванов" required>
+                                <input class="form-control" asp-for="LastName" type="text" id="LastName" placeholder="Иванов" required>
                                 <div class="invalid-feedback">Пожалуйста, укажите свою фамилию</div>
                                 <div class="valid-feedback">Ок!</div>
                             </div>
@@ -41,7 +41,7 @@
                             <div>
                                 <!-- Email -->
                                 <label for="Email" class="form-label">Email</label>
-                                <input class="form-control" type="email" id="Email" placeholder="you@example.com"
+                                <input class="form-control" asp-for="Email" type="email" id="Email" placeholder="you@example.com"
                                        required>
                                 <div class="invalid-feedback">Пожалуйста, укажите действительный почтовый ящик</div>
                                 <div class="valid-feedback">Ок!</div>
@@ -53,7 +53,7 @@
                             <div>
                                 <!-- Адрес -->
                                 <label for="Address" class="form-label">Адрес</label>
-                                <input class="form-control" type="text" id="Address"
+                                <input class="form-control" asp-for="Address" type="text" id="Address"
                                        placeholder="Ивановская 2/9, кор. 6" required>
                                 <div class="invalid-feedback">Пожалуйста, введите точный адрес</div>
                                 <div class="valid-feedback">Ок!</div>
@@ -65,7 +65,7 @@
                             <div class="col-md-5">
                                 <!-- Страна -->
                                 <label for="Country" class="form-label">Страна</label>
-                                <select class="form-select" id="Country" required>
+                                <select class="form-select" asp-for="Country" id="Country" required>
                                     <option selected disabled value="">Выберите...</option>
                                     <option>Россия</option>
                                     <option>Украина</option>
