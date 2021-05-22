@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookstoreWeb.Migrations
 {
     [DbContext(typeof(BookstoreDbContext))]
-    [Migration("20210520131205_Initial")]
+    [Migration("20210522072812_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -65,6 +65,31 @@ namespace BookstoreWeb.Migrations
                     b.ToTable("Books");
                 });
 
+            modelBuilder.Entity("BookstoreWeb.Models.Entities.CartLine", b =>
+                {
+                    b.Property<int>("CartLineID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("BookId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("OrderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("CartLineID");
+
+                    b.HasIndex("BookId");
+
+                    b.HasIndex("OrderId");
+
+                    b.ToTable("CartLine");
+                });
+
             modelBuilder.Entity("BookstoreWeb.Models.Entities.Category", b =>
                 {
                     b.Property<long>("Id")
@@ -80,6 +105,39 @@ namespace BookstoreWeb.Migrations
                     b.ToTable("Categories");
                 });
 
+            modelBuilder.Entity("BookstoreWeb.Models.Entities.Order", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Address")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Postcode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("Shipped")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Orders");
+                });
+
             modelBuilder.Entity("BookstoreWeb.Models.Entities.Book", b =>
                 {
                     b.HasOne("BookstoreWeb.Models.Entities.Category", "Category")
@@ -89,6 +147,24 @@ namespace BookstoreWeb.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("BookstoreWeb.Models.Entities.CartLine", b =>
+                {
+                    b.HasOne("BookstoreWeb.Models.Entities.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId");
+
+                    b.HasOne("BookstoreWeb.Models.Entities.Order", null)
+                        .WithMany("Lines")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Book");
+                });
+
+            modelBuilder.Entity("BookstoreWeb.Models.Entities.Order", b =>
+                {
+                    b.Navigation("Lines");
                 });
 #pragma warning restore 612, 618
         }

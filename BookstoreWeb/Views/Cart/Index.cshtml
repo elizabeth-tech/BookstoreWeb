@@ -60,19 +60,28 @@
 
             <!-- Кнопки -->
             <div class="row justify-content-center block-btn">
-                <div class="col-lg-3 col-md-4 col-sm-6 text-end">
-                        <a class="order-btn"
-                           asp-action="Checkout"
-                           asp-controller="Order">Заказать все</a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 text-start">
-                    <form action="/">
-                        <button class="back-btn" type="submit">На главную</button>
-                    </form>
-                </div>
+                @if (Model.Cart.Lines.Count == 0)
+                {
+                    <div class="col-lg-3 col-md-3 col-sm-6 text-center">
+                        <form action="/">
+                            <button class="back-btn" type="submit">На главную</button>
+                        </form>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-lg-3 col-md-4 col-sm-6 text-end">
+                        <div style="margin-top: 7px;">
+                            <a class="order-btn" asp-action="Checkout" asp-controller="Order">Заказать все</a>
+                        </div>
+                    </div>                
+                    <div class="col-lg-3 col-md-3 col-sm-6 text-start">
+                        <form action="/">
+                            <button class="back-btn" type="submit">На главную</button>
+                        </form>
+                    </div>
+                }
             </div>
-
-
         </div>
 
     </div>

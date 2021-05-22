@@ -19,17 +19,23 @@ namespace BookstoreWeb.Controllers
         public IActionResult Checkout(Order order)
         {
             if (cart.Lines.Count == 0)
-                ModelState.AddModelError("", "В Вашей корзине нет ни одной книги, нам нечего отправить :(");
+                ModelState.AddModelError("", "Корзина пуста");
 
-            if (ModelState.IsValid) // проверяем, есть ли какие нибудь проблемы
+            // Если нет никаких проблем, то пользователю показываем страницу благодарности за заказ
+            if (ModelState.IsValid) 
             {
                 order.Lines = cart.Lines.ToArray();
                 repository.SaveOrder(order);
-                cart.Clear();
-                return RedirectToPage("/Completed", new { orderId = order.Id });
+                return RedirectToAction(nameof(Completed));  
             }
             else
-                return View();
+                return View(order); // Если есть проблемы, то остаемся на странице заказа
+        }
+
+        public ViewResult Completed()
+        {
+            cart.Clear();
+            return View();
         }
     }
 }

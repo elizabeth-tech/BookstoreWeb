@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace BookstoreWeb.Models.Entities
 {
@@ -12,16 +13,22 @@ namespace BookstoreWeb.Models.Entities
         [BindNever]
         public ICollection<CartLine> Lines { get; set; }
 
+        [Required]
         public string Name { get; set; }
 
+        [Required]
         public string LastName { get; set; }
 
+        [Required]
         public string Email { get; set; }
 
+        [Required]
         public string Country { get; set; }
 
+        [Required]
         public string Address { get; set; }
 
+        [Required]
         public string Postcode { get; set; }
 
         [BindNever]
