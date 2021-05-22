@@ -28,6 +28,7 @@ namespace BookstoreWeb
             // Добавление служб репозиториев
             services.AddScoped<IBookRepository, BookRepository>();
             services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
 
             // Включение поддержки сеансов
             services.AddDistributedMemoryCache();

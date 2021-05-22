@@ -61,9 +61,9 @@
             <!-- Кнопки -->
             <div class="row justify-content-center block-btn">
                 <div class="col-lg-3 col-md-4 col-sm-6 text-end">
-                    <form>
-                        <button class="order-btn" type="submit">Заказать все</button>
-                    </form>
+                        <a class="order-btn"
+                           asp-action="Checkout"
+                           asp-controller="Order">Заказать все</a>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-start">
                     <form action="/">
