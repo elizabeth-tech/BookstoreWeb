@@ -2,7 +2,7 @@
 {
     public class CartLine
     {
-        public int CartLineID { get; set; }
+        public long Id { get; set; }
 
         public Book Book { get; set; }
 

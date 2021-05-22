@@ -13,7 +13,7 @@ namespace BookstoreWeb.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,12 +26,12 @@ namespace BookstoreWeb.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Country = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Address = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Postcode = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Postcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Shipped = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
@@ -45,15 +45,15 @@ namespace BookstoreWeb.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Annotation = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Annotation = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Price = table.Column<decimal>(type: "decimal(8,2)", nullable: false),
-                    Publisher = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Publisher = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     PageCount = table.Column<int>(type: "int", nullable: false),
                     Circulation = table.Column<int>(type: "int", nullable: false),
                     YearPublishing = table.Column<int>(type: "int", nullable: false),
-                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    Image = table.Column<byte[]>(type: "varbinary(max)", nullable: false),
                     CategoryId = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
@@ -71,7 +71,7 @@ namespace BookstoreWeb.Migrations
                 name: "CartLine",
                 columns: table => new
                 {
-                    CartLineID = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BookId = table.Column<long>(type: "bigint", nullable: true),
                     Quantity = table.Column<int>(type: "int", nullable: false),
@@ -79,7 +79,7 @@ namespace BookstoreWeb.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CartLine", x => x.CartLineID);
+                    table.PrimaryKey("PK_CartLine", x => x.Id);
                     table.ForeignKey(
                         name: "FK_CartLine_Books_BookId",
                         column: x => x.BookId,
