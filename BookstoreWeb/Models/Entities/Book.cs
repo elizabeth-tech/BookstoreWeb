@@ -38,7 +38,6 @@ namespace BookstoreWeb.Models.Entities
         [Required]
         public long CategoryId { get; set; } // Внешний ключ категории
 
-        [Required]
         public Category Category { get; set; } // Навигационное свойство
     }
 }

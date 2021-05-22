@@ -1,0 +1,204 @@
+﻿@model CategoriesAndBooksViewModel
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/admin/admin_create_and_update_book.css">
+
+<!-- Страница создания и редактирования книги -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h3>Создать\Редактировать книгу</h3>
+    </div>
+
+    <div class="container-fluid">
+
+        <!-- Заголовок блока форм -->
+        <div class="form-title">
+            <p>Заполните все поля, чтобы добавить книгу.</p>
+        </div>
+
+        <!-- Блок формы с полями для заполнения -->
+        <div class="row text-form mb-5">
+            <div class="col-lg-7">
+                <form asp-action="Edit" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
+
+                    <!-- Строка 1 -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <!-- ID книги -->
+                            <label asp-for="@Model.Book.Id" for="BookID" class="form-label">ID</label>
+                            <input asp-for="@Model.Book.Id" class="form-control form-control-sm" type="text" id="BookID" readonly>
+                        </div>
+                        <div class="col-md-9">
+                            <!-- Название книги -->
+                            <label asp-for="@Model.Book.Name" for="BookName" class="form-label">Название</label>
+                            <input asp-for="@Model.Book.Name" class="form-control form-control-sm" type="text" id="BookName"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите название книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <!-- Строка 2 -->
+                    <div class="row mb-4">
+                        <div class="col-md-8">
+                            <!-- Автор -->
+                            <label asp-for="@Model.Book.Author" for="BookAuthor" class="form-label">Автор</label>
+                            <input asp-for="@Model.Book.Author" class="form-control form-control-sm" type="text" id="BookAuthor"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите автора книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                        <!-- Цена -->
+                        <div class="col-md-4">
+                            <label asp-for="@Model.Book.Price" for="BookPrice" class="form-label">Цена</label>
+                            <input asp-for="@Model.Book.Price" class="form-control form-control-sm" type="text" id="BookPrice"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите корректную цену книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <!-- Строка 3 -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <!-- Категория -->
+                            <label asp-for="@Model.Book.Category" for="BookCategory" class="form-label">Категория</label>
+                            <select asp-for="@Model.Book.CategoryId" class="form-select form-select-sm" id="BookCategory" required>
+                                @if (Model.Book.Id == 0) // Если мы создаем новую книгу
+                                {
+                                    <option selected disabled>Выберите...</option>
+                                }
+                                @foreach (Category category in Model.Categories)
+                                {
+                                    <option selected=@(Model.Book.Category?.Id == category.Id)
+                                            value="@category.Id">
+                                        @category.Name
+                                    </option>
+                                }
+                            </select>
+                            <div class="invalid-feedback">Пожалуйста, выберите категорию книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- Издательство -->
+                            <label asp-for="@Model.Book.Publisher" for="BookPublish" class="form-label">Издательство</label>
+                            <input asp-for="@Model.Book.Publisher" class="form-control form-control-sm" type="text" id="BookPublish"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите издательство книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <!-- Строка 4 -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <!-- Тираж -->
+                            <label asp-for="@Model.Book.Circulation" for="BookEdition" class="form-label">Тираж</label>
+                            <input asp-for="@Model.Book.Circulation" class="form-control form-control-sm" type="text" id="BookEdition"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите тираж книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                        <!-- Количество страниц -->
+                        <div class="col-md-5">
+                            <label asp-for="@Model.Book.PageCount" for="BookPage" class="form-label">Количество страниц</label>
+                            <input asp-for="@Model.Book.PageCount" class="form-control form-control-sm" type="text" id="BookPage"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите количество страниц книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                        <!-- Год издания -->
+                        <div class="col-md-4">
+                            <label asp-for="@Model.Book.YearPublishing" for="BookYear" class="form-label">Год издания</label>
+                            <input asp-for="@Model.Book.YearPublishing" class="form-control form-control-sm" type="text" id="BookYear"
+                                   required>
+                            <div class="invalid-feedback">Пожалуйста, укажите год издания книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <!-- Строка 5 -->
+                    <div class="row mb-2">
+                        <!-- Обложка книги -->
+                        <p>Обложка</p>
+                        <div class="col-md-8">
+                            <input asp-for="@Model.Image" type="file" accept="image/jpeg" class="form-control form-control-sm" required>
+                            <div class="invalid-feedback">Пожалуйста, загрузите обложку книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <!-- Если мы не создаем новую книгу, то показываем текущее изображение из БД -->
+                    <!-- Строка 6 -->
+                    @if (Model.Book.Image != null)
+                    {
+                        <div class="row">
+                            <div class="col-md-12 block-img-book">
+                                <div class="row">
+                                    <div class="col-md-6 mb-2 text-center">
+                                        Текущее изображение:
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 text-center">
+                                        <img class="img-book" src=@("data:image/jpeg;base64," + Convert.ToBase64String(Model.Book.Image)) alt="Обложка книги">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Строка 7 -->
+                    <div class="row mb-4 mt-4">
+                        <!-- Аннотация -->
+                        <div>
+                            <label asp-for="@Model.Book.Annotation" for="BookAnnotation" class="form-label">Аннотация</label>
+                            <textarea asp-for="@Model.Book.Annotation" class="form-control annotation" id="BookAnnotation" rows="10"
+                                      required>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Vel itaque quia eos! Quidem, magni vitae commodi iure amet minus enim labore odit porro quod, earum ad cumque corrupti laboriosam itaque!
+                                            </textarea>
+                            <div class="invalid-feedback">Пожалуйста, внесите аннотацию книги</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <!-- Кнопка Создать\Сохранить -->
+                            <button class="save-btn" type="submit">Сохранить книгу</button>
+                            <!-- Кнопка Отмена -->
+                            <a asp-action="BooksList" class="cancel-btn" type="submit">Отмена</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Валидация -->
+<script>
+    // Отключение отправки форм при наличии недопустимых полей
+    (function () {
+        'use strict'
+
+        // Получаем формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Предотвращаем отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>

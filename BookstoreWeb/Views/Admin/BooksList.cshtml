@@ -12,6 +12,11 @@
         <h3>Книги</h3>
     </div>
 
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+
     <!-- Кнопка добавления данных -->
     <div class="block-btn">
         <a asp-action="Create" class="create-btn">Создать книгу</a>
@@ -47,11 +52,11 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                     <li>
-                                        
+
                                         <button class="dropdown-item" type="button">Подробней</button>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" asp-action="Edit" asp-route-bookId="@book.Id">Редактировать</a>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-Id="@book.Id">Редактировать</a>
                                         @*<button class="dropdown-item" type="button">Редактировать</button>*@
                                     </li>
                                     <li>
@@ -60,7 +65,7 @@
                                             <button class="dropdown-item" type="submit">
                                                 <span class="delete-text">Удалить</span>
                                             </button>
-                                        </form> 
+                                        </form>
                                     </li>
                                 </ul>
                             </div>

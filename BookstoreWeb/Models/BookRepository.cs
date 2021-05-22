@@ -2,6 +2,7 @@
 using BookstoreWeb.Models.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BookstoreWeb.Models
 {
@@ -9,22 +10,40 @@ namespace BookstoreWeb.Models
     {
         private readonly BookstoreDbContext context;
 
-        public IEnumerable<Book> Books => context.Books.Include(c => c.Category);
+        public IEnumerable<Book> Books => context.Books
+            .Include(c => c.Category)
+            .ToArray();
 
         public BookRepository(BookstoreDbContext context) => this.context = context;
 
-        public void SaveBook() => context.SaveChanges();
-
-        public void CreateBook(Book book)
+        // Сохранение книги после редактирования старой или создания новой
+        public void SaveBook(Book book)
         {
-            context.Add(book);
+            if (book.Id == 0)
+            {
+                context.Books.Add(book);
+            }
+            else
+            {
+                Book dbEntry = context.Books.FirstOrDefault(b => b.Id == book.Id);
+
+                if (dbEntry != null)
+                {
+                    dbEntry.Name = book.Name;
+                    dbEntry.Author = book.Author;
+                    dbEntry.Annotation = book.Annotation;
+                    dbEntry.Price = book.Price;
+                    dbEntry.Publisher = book.Publisher;
+                    dbEntry.PageCount = book.PageCount;
+                    dbEntry.Circulation = book.Circulation;
+                    dbEntry.YearPublishing = book.YearPublishing;
+                    dbEntry.CategoryId = book.CategoryId;
+                    dbEntry.Image = book.Image;
+                }
+            }
             context.SaveChanges();
         }
 
-        public void DeleteBook(Book book)
-        {
-            context.Remove(book);
-            context.SaveChanges();
-        }
+        
     }
 }

@@ -1,29 +1,62 @@
 ﻿using BookstoreWeb.Models.Interfaces;
+using BookstoreWeb.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookstoreWeb.Controllers
 {
     public class AdminController : Controller
     {
-        private readonly IBookRepository repository;
+        private readonly IBookRepository bookRepository;
+        private readonly ICategoryRepository categoryRepository;
 
-        public AdminController(IBookRepository repository)
+        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
         {
-            this.repository = repository;
+            this.bookRepository = bookRepository;
+            this.categoryRepository = categoryRepository;
         }
 
+        // Отображение основной страницы админа, с данными о сервере
         public ViewResult Index()
         {
             return View();
         }
 
+        // Отображение страницы со списком книг
         public ViewResult BooksList()
         {
-            return View(repository.Books);
+            return View(bookRepository.Books);
+        }
+
+        // Отображение страницы с выбранной книгой, для редактирования или создания новой
+        public ViewResult Edit(int Id)
+        {
+            return View(new CategoriesAndBooksViewModel
+            {
+                Categories = categoryRepository.Categories,
+                Book = bookRepository.Books.FirstOrDefault(b => b.Id == Id)
+            });
+        }
+
+        // Сохранение измененных данных по книге в БД
+        [HttpPost]
+        public IActionResult Edit(CategoriesAndBooksViewModel bookvm)
+        {
+            bookvm.Book.Image = ConvertImage(bookvm.Image);
+            bookRepository.SaveBook(bookvm.Book);
+            TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
+            return RedirectToAction("BooksList");
+        }
+
+        // Считываем переданную картинку в массив байтов
+        private byte[] ConvertImage(IFormFile formFile)
+        {
+            byte[] imageData;
+            using (var binaryReader = new BinaryReader(formFile.OpenReadStream()))
+                imageData = binaryReader.ReadBytes((int)formFile.Length);
+            return imageData;
         }
     }
 }
