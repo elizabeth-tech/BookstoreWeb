@@ -1,0 +1,123 @@
+/* Стили Header */
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.to-site {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.to-site:hover {
+    color: coral;
+    font-family: 'Conv_Montserrat-Bold';
+}
+
+.navbar-brand {
+    padding-left: 30px;
+}
+
+.navbar-nav {
+    padding-right: 40px;
+}
+
+.out-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 16px;
+    padding: 3px 25px;
+    border: 2px solid rgb(255, 119, 70);
+    background-color: rgb(255, 119, 70);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.out-btn:hover {
+    border: 2px solid rgb(250, 138, 97);
+    background-color: rgb(250, 138, 97);
+    color: black;
+}
+
+/* Стили сайдбара */
+
+.side {
+    min-height: 100vh;
+}
+
+.nav-link {
+    color: black;
+    font-family: 'Conv_Montserrat-Regular';
+    font-size: 16px;
+}
+
+.active {
+    font-family: 'Conv_Montserrat-Medium';
+    color: rgb(224, 61, 2);
+}
+
+.nav-link:hover {
+    color: rgb(226, 119, 80);
+}
+
+.nav-link:focus {
+    color: rgb(228, 108, 65);
+}
+
+.sidebar-text {
+    padding-left: 7px;
+}
+
+/* Основная часть */
+
+.form-title {
+    padding-top: 30px;
+}
+
+.text-form {
+    font-size: 14px;
+}
+
+.save-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    padding: 3px 25px;
+    border: 2px solid rgb(255, 102, 46);
+    background-color: rgb(255, 102, 46);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.save-btn:hover {
+    border: 2px solid rgb(255, 156, 119);
+    background-color: rgb(255, 156, 119);
+    color: black;
+}
+
+.cancel-btn {
+    margin-left: 15px;
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    padding: 3px 25px;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.cancel-btn:hover {
+    border: 2px solid black;
+    background-color: black;
+    color: white;
+}

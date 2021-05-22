@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Book>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/admin/admin_books.css">
+
+<!-- Таблица с книгами -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h3>Книги</h3>
+    </div>
+
+    <!-- Кнопка добавления данных -->
+    <div class="block-btn">
+        <a asp-action="Create" class="create-btn">Создать книгу</a>
+    </div>
+
+    <!-- Таблица книг -->
+    <div class="block-table">
+        <table class="table table-hover table-sm">
+            <thead>
+                <tr class="title">
+                    <th>ID</th>
+                    <th>Категория</th>
+                    <th>Название</th>
+                    <th>Автор</th>
+                    <th>Цена</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <th scope="row">@book.Id</th>
+                        <td>@book.Category.Name</td>
+                        <td>@book.Name</td>
+                        <td>@book.Author</td>
+                        <td>@book.Price.ToString("c")</td>
+                        <td class="text-center">
+                            <div class="dropdown">
+                                <button class="action-btn dropdown-toggle" type="button" id="dropdownMenu2"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                    Действие...
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <li>
+                                        
+                                        <button class="dropdown-item" type="button">Подробней</button>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Edit" asp-route-bookId="@book.Id">Редактировать</a>
+                                        @*<button class="dropdown-item" type="button">Редактировать</button>*@
+                                    </li>
+                                    <li>
+                                        <form asp-action="Delete" method="post">
+                                            <input type="hidden" name="Id" value="@book.Id" />
+                                            <button class="dropdown-item" type="submit">
+                                                <span class="delete-text">Удалить</span>
+                                            </button>
+                                        </form> 
+                                    </li>
+                                </ul>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>

@@ -1,0 +1,175 @@
+/* Стили Header */
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.to-site {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.to-site:hover {
+    color: coral;
+    font-family: 'Conv_Montserrat-Bold';
+}
+
+.navbar-brand {
+    padding-left: 30px;
+}
+
+.navbar-nav {
+    padding-right: 40px;
+}
+
+.out-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 16px;
+    padding: 3px 25px;
+    border: 2px solid rgb(255, 119, 70);
+    background-color: rgb(255, 119, 70);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.out-btn:hover {
+    border: 2px solid rgb(250, 138, 97);
+    background-color: rgb(250, 138, 97);
+    color: black;
+}
+
+/* Стили сайдбара */
+
+.side {
+    min-height: 100vh;
+}
+
+.nav-link {
+    color: black;
+    font-family: 'Conv_Montserrat-Regular';
+    font-size: 16px;
+}
+
+.active {
+    font-family: 'Conv_Montserrat-Medium';
+    color: rgb(224, 61, 2);
+}
+
+.nav-link:hover {
+    color: rgb(226, 119, 80);
+}
+
+.nav-link:focus {
+    color: rgb(228, 108, 65);
+}
+
+.sidebar-text {
+    padding-left: 7px;
+}
+
+/* Основная часть */
+
+.block-btn {
+    padding: 10px 0px 30px 0px;
+}
+
+.update-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    padding: 3px 18px;
+    border: 2px solid rgb(0, 199, 76);
+    background-color: rgb(0, 199, 76);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.update-btn:hover {
+    border: 2px solid rgb(0, 226, 87);
+    background-color: rgb(0, 226, 87);
+    color: black;
+}
+
+.block-table {
+    padding-bottom: 40px;
+}
+
+table {
+    font-size: 14px;
+}
+
+.unsent {
+    background-color: rgb(255, 232, 232);
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.sent {
+    background-color: rgb(219, 255, 237);
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.table-title {
+    background-color: rgb(236, 236, 236);
+}
+
+.mycol1 {
+    width: 15%;
+}
+
+.mycol2 {
+    width: 17%;
+}
+
+.mytext {
+    font-family: 'Conv_Montserrat-Medium';
+    padding-right: 7px;
+}
+
+.mytext-second {
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.btn-sent {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 12px;
+    padding: 2px 15px;
+    border: 2px solid rgb(255, 130, 72);
+    background-color: rgb(255, 130, 72);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.btn-sent:hover {
+    border: 2px solid rgb(255, 163, 120);
+    background-color: rgb(255, 163, 120);
+}
+
+.btn-cancel {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 12px;
+    padding: 2px 15px;
+    border: 2px solid rgb(253, 66, 66);
+    background-color: rgb(253, 66, 66);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.btn-cancel:hover {
+    border: 2px solid rgb(255, 101, 101);
+    background-color: rgb(255, 101, 101);
+    color: black;
+}

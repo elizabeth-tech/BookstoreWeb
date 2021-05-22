@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Order>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/admin/admin_orders.css">
+
+<!-- Заказы от клиентов -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h3>Заказы</h3>
+    </div>
+
+    <!-- Кнопка обновления данных -->
+    <div class="block-btn">
+        <button type="submit" class="update-btn">Обновить данные</button>
+    </div>
+
+    <!-- Таблица неотправленных заказов -->
+    <div class="block-table">
+        <table class="table table-bordered table-sm">
+            <thead class="unsent">
+                <tr>
+                    <th>Неотправленные заказы</th>
+                </tr>
+            </thead>
+
+            @if (Model.Count() > 0)
+            {
+
+                @foreach (Order order in Model)
+                {
+                    <tr class="table-title">
+                        <th class="mycol1"><span class="mytext">ID заказа:</span>@order.Id</th>
+                        <th class="mycol2"><span class="mytext">Почтовый индекс:</span>@order.Postcode</th>
+                        <th><span class="mytext-second">Название книг(и)</span></th>
+                        <th><span class="mytext-second">Количество</span></th>
+                        <th>
+                            <form asp-action="MarkShipped" method="post">
+                                <input type="hidden" name="orderId" value="@order.Id" />
+                                <button type="submit" class="btn-sent">Отправить</button>
+                            </form>
+                        </th>
+                    </tr>
+                    @foreach (CartLine line in order.Lines)
+                    {
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td>@line.Book.Name</td>
+                            <td>@line.Quantity</td>
+                        </tr>
+                    }
+                }
+            }
+            else
+            {
+                <tr class="table-title text-center">
+                    <th class="mycol1">
+                        <span class="mytext">Все заказы отправлены</span>
+                    </th>
+                </tr>
+            }
+        </table>
+    </div>
+
+    <!-- Таблица отправленных заказов -->
+    <table class="table table-bordered table-sm">
+        <thead class="sent">
+            <tr>
+                <th>Отправленные заказы</th>
+            </tr>
+        </thead>
+
+        @*<tr class="table-title">
+            <th class="mycol1"><span class="mytext">ID заказа:</span>0239</th>
+            <th class="mycol2"><span class="mytext">Почтовый индекс:</span>HTFKD</th>
+            <th><span class="mytext-second">Название книг(и)</span></th>
+            <th><span class="mytext-second">Количество</span></th>
+            <th>
+                <button type="submit" class="btn-cancel">Отменить</button>
+            </th>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Наследница драконов</td>
+            <td>3</td>
+        </tr>
+
+        <tr>
+            <td></td>
+            <td></td>
+            <td>Наследница драконов</td>
+            <td>3</td>
+        </tr>*@
+
+    </table>
+</main>

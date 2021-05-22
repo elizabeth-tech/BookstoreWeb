@@ -1,0 +1,139 @@
+/* Стили Header */
+
+.logo-img {
+    width: 50px;
+    height: 50px;
+}
+
+.to-site {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    font-family: 'Conv_Montserrat-Medium';
+}
+
+.to-site:hover {
+    color: coral;
+    font-family: 'Conv_Montserrat-Bold';
+}
+
+.navbar-brand {
+    padding-left: 30px;
+}
+
+.navbar-nav {
+    padding-right: 40px;
+}
+
+.out-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 16px;
+    padding: 3px 25px;
+    border: 2px solid rgb(255, 119, 70);
+    background-color: rgb(255, 119, 70);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.out-btn:hover {
+    border: 2px solid rgb(250, 138, 97);
+    background-color: rgb(250, 138, 97);
+    color: black;
+}
+
+/* Стили сайдбара */
+
+.side {
+    min-height: 100vh;
+}
+
+.nav-link {
+    color: black;
+    font-family: 'Conv_Montserrat-Regular';
+    font-size: 16px;
+}
+
+.active {
+    font-family: 'Conv_Montserrat-Medium';
+    color: rgb(224, 61, 2);
+}
+
+.nav-link:hover {
+    color: rgb(226, 119, 80);
+}
+
+.nav-link:focus {
+    color: rgb(228, 108, 65);
+}
+
+.sidebar-text {
+    padding-left: 7px;
+}
+
+/* Основная часть */
+
+.block-btn {
+    padding: 20px 0px 20px 0px;
+}
+
+.create-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 14px;
+    padding: 2px 16px;
+    border: 2px solid rgb(0, 197, 89);
+    background-color: rgb(0, 197, 89);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.create-btn:hover {
+    border: 2px solid rgb(58, 226, 134);
+    background-color: rgb(58, 226, 134);
+    color: black;
+}
+
+.title {
+    background-color: rgb(24, 24, 24);
+    color: white;
+}
+
+table {
+    font-size: 14px;
+}
+
+/* Кнопка в таблице */
+
+.action-btn {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 13px;
+    padding: 2px 16px;
+    border: 2px solid coral;
+    background-color: rgb(255, 255, 255);
+    color: black;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}
+
+.action-btn:hover {
+    border: 2px solid rgb(255, 158, 123);
+    background-color: rgb(255, 158, 123);
+    color: black;
+}
+
+.delete-text {
+    color: crimson;
+}
+
+.dropdown-item:active {
+    font-family: 'Conv_Montserrat-Medium';
+    background-color: rgb(206, 206, 206);
+    color: black;
+}
