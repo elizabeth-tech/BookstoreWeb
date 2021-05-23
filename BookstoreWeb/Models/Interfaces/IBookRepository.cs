@@ -8,5 +8,7 @@ namespace BookstoreWeb.Models.Interfaces
         IEnumerable<Book> Books { get; }
 
         void SaveBook(Book book);
+
+        Book DeleteBook(long Id);
     }
 }

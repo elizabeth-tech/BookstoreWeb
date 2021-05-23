@@ -44,6 +44,15 @@ namespace BookstoreWeb.Models
             context.SaveChanges();
         }
 
-        
+        public Book DeleteBook(long Id)
+        {
+            Book dbEntry = context.Books.FirstOrDefault(b => b.Id == Id);
+            if (dbEntry != null)
+            {
+                context.Books.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }

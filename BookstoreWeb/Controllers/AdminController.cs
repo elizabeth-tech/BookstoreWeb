@@ -73,5 +73,13 @@ namespace BookstoreWeb.Controllers
                 Book = new Book(),
                 Categories = categoryRepository.Categories 
             });
+
+        public IActionResult Delete(int Id)
+        {
+            Book deletedBook = bookRepository.DeleteBook(Id);
+            if(deletedBook != null)
+                TempData["message"] = $"Книга \"{deletedBook.Name}\" с ID:{deletedBook.Id} была удалена";
+            return RedirectToAction("BooksList");
+        }
     }
 }
