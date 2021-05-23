@@ -17,6 +17,10 @@
         <div class="alert alert-success">@TempData["message"]</div>
     }
 
+    <div class="mt-4 mb-2">
+        <span class="count-books">Количество книг в базе данных: @ViewBag.Count</span>
+    </div>
+
     <!-- Кнопка добавления данных -->
     <div class="block-btn">
         <a asp-action="CreateBook" class="create-btn">Создать книгу</a>

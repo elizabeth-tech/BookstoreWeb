@@ -30,6 +30,7 @@ namespace BookstoreWeb.Controllers
         // Отображение страницы со списком книг
         public ViewResult BooksList()
         {
+            ViewBag.Count = bookRepository.Books.Count();
             return View(bookRepository.Books);
         }
 

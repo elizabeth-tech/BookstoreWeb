@@ -75,6 +75,11 @@
 
 /* Основная часть */
 
+.count-books {
+    font-family: 'Conv_Montserrat-Bold';
+    font-size: 17px;
+}
+
 table {
     font-size: 14px;
 }
