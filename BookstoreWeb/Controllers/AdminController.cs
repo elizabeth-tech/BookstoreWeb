@@ -44,10 +44,21 @@ namespace BookstoreWeb.Controllers
         [HttpPost]
         public IActionResult Edit(CategoriesAndBooksViewModel bookvm)
         {
-            bookvm.Book.Image = ConvertImage(bookvm.Image);
-            bookRepository.SaveBook(bookvm.Book);
-            TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
-            return RedirectToAction("BooksList");
+            // Если загрузили новую картинку или оставили старую картинку при редактировании
+            if (bookvm.Image != null || bookvm.Book.Image != null) 
+            {
+                if(bookvm.Image != null)
+                    bookvm.Book.Image = ConvertImage(bookvm.Image);
+                if (ModelState.IsValid)
+                {
+                    bookRepository.SaveBook(bookvm.Book);
+                    TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
+                    return RedirectToAction("BooksList");
+                }
+                else return View(bookvm);
+            }
+            else // Что то не так
+                return View(bookvm); 
         }
 
         // Считываем переданную картинку в массив байтов
