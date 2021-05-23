@@ -13,9 +13,14 @@
         <h3>Категории</h3>
     </div>
 
+    @if (TempData["message"] != null)
+    {
+        <div class="alert alert-success">@TempData["message"]</div>
+    }
+
     <!-- Кнопка добавления данных -->
     <div class="block-btn">
-        <a asp-action="Create" class="create-btn">Создать категорию</a>
+        <a asp-action="CreateCategory" class="create-btn">Создать категорию</a>
     </div>
 
     <!-- Таблица категорий -->

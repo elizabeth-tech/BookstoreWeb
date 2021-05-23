@@ -70,7 +70,7 @@ namespace BookstoreWeb.Controllers
         }
 
         // Создание новой книги
-        public ViewResult Create() => View(nameof(EditBook), 
+        public ViewResult CreateBook() => View(nameof(EditBook), 
             new CategoriesAndBooksViewModel 
             { 
                 Book = new Book(),
@@ -113,5 +113,24 @@ namespace BookstoreWeb.Controllers
         {
             return View(categoryRepository.Categories);
         }
+
+        // Отображение страницы с выбранной категорией, для редактирования или создания новой
+        public ViewResult EditCategory(int Id)
+        {
+            return View(categoryRepository.Categories
+                .FirstOrDefault(c => c.Id == Id));
+        }
+
+        // Сохранение отредактированных данных по категории в БД
+        [HttpPost]
+        public IActionResult EditCategory(Category category)
+        {
+            categoryRepository.SaveCategory(category);
+            TempData["message"] = $"Категория \"{category.Name}\" с ID:{category.Id} успешно сохранена";
+            return RedirectToAction(nameof(CategoriesList));
+        }
+
+        // Создание новой категории
+        public ViewResult CreateCategory() => View(nameof(EditCategory), new Category());
     }
 }
