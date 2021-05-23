@@ -34,7 +34,7 @@ namespace BookstoreWeb.Controllers
         }
 
         // Отображение страницы с выбранной книгой, для редактирования или создания новой
-        public ViewResult Edit(int Id)
+        public ViewResult EditBook(int Id)
         {
             return View(new CategoriesAndBooksViewModel
             {
@@ -45,7 +45,7 @@ namespace BookstoreWeb.Controllers
 
         // Сохранение отредактированных данных по книге в БД
         [HttpPost]
-        public IActionResult Edit(CategoriesAndBooksViewModel bookvm)
+        public IActionResult EditBook(CategoriesAndBooksViewModel bookvm)
         {
             // Если загрузили новую картинку или оставили старую картинку при редактировании
             if (bookvm.Image != null || bookvm.Book.Image != null)
@@ -70,7 +70,7 @@ namespace BookstoreWeb.Controllers
         }
 
         // Создание новой книги
-        public ViewResult Create() => View(nameof(Edit), 
+        public ViewResult Create() => View(nameof(EditBook), 
             new CategoriesAndBooksViewModel 
             { 
                 Book = new Book(),
@@ -106,6 +106,12 @@ namespace BookstoreWeb.Controllers
             }
 
             return RedirectToAction(nameof(OrdersList));
+        }
+
+        // Отображение страницы со списком категорий
+        public ViewResult CategoriesList()
+        {
+            return View(categoryRepository.Categories);
         }
     }
 }

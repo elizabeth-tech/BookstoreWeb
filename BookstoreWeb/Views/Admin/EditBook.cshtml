@@ -30,7 +30,7 @@
         <!-- Блок формы с полями для заполнения -->
         <div class="row text-form mb-5">
             <div class="col-lg-8">
-                <form asp-action="Edit" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
+                <form asp-action="EditBook" enctype="multipart/form-data" method="post" class="needs-validation" novalidate>
 
                     <!-- Строка 1 -->
                     <div class="row mb-4">
@@ -79,7 +79,7 @@
                             <select asp-for="@Model.Book.CategoryId" class="form-select form-select-sm" id="BookCategory" required>
                                 @if (Model.Book.Id == 0) // Если мы создаем новую книгу
                                 {
-                                    <option selected disabled>Выберите...</option>
+                                    <option selected disabled value="">Выберите...</option>
                                 }
                                 @if (Model.Categories != null)
                                 {
@@ -196,7 +196,7 @@
                             <!-- Кнопка Создать\Сохранить -->
                             <button class="save-btn" type="submit">Сохранить книгу</button>
                             <!-- Кнопка Отмена -->
-                            <a asp-action="BooksList" class="cancel-btn" type="submit">Отмена</a>
+                            <a asp-action="BooksList" class="cancel-btn">Отмена</a>
                         </div>
                     </div>
                 </form>

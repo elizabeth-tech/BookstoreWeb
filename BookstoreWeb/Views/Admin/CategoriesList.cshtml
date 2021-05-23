@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Category>
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/admin/admin_categories.css">
+
+<!-- Список категорий -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h3>Категории</h3>
+    </div>
+
+    <!-- Кнопка добавления данных -->
+    <div class="block-btn">
+        <a asp-action="Create" class="create-btn">Создать категорию</a>
+    </div>
+
+    <!-- Таблица категорий -->
+    <div class="row justify-content-start">
+        <div class="col-md-6">
+            <table class="table table-hover table-sm">
+                <thead>
+                    <tr class="title">
+                        <th>ID</th>
+                        <th>Название категории</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model)
+                    {
+                        <tr>
+                            <th scope="row">@category.Id</th>
+                            <td>@category.Name</td>
+                            <td class="text-center">
+                                <div class="dropdown">
+                                    <button class="action-btn dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        Действие...
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <li>
+                                            <a class="dropdown-item" asp-action="EditCategory" asp-route-Id="@category.Id">Редактировать</a>
+                                        </li>
+                                        <li>
+                                            <form asp-action="Delete" method="post">
+                                                <input type="hidden" name="Id" value="@category.Id" />
+                                                <button class="dropdown-item" type="submit">
+                                                    <span class="delete-text">Удалить</span>
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>

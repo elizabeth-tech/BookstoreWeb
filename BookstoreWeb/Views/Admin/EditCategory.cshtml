@@ -1,0 +1,88 @@
+﻿@model Category
+
+@{
+    Layout = "_AdminLayout";
+}
+
+<link rel="stylesheet" href="~/css/admin/admin_create_and_upadate_category.css">
+
+
+<!-- Создать\Редактировать категорию -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        @if (Model.Id == 0)
+        {
+            <h3>Создать категорию</h3>
+        }
+        else
+        {
+            <h3>Редактировать категорию</h3>
+        }
+    </div>
+
+    <div class="container-fluid">
+
+        <!-- Заголовок блока форм -->
+        <div class="form-title">
+            <p>Заполните поле, чтобы добавить категорию.</p>
+        </div>
+
+        <!-- Блок формы с полями для заполнения -->
+        <div class="row text-form mb-5">
+            <div class="col-lg-6">
+                <form asp-action="EditCategory" class="needs-validation" novalidate>
+
+                    <!-- Строка 1 -->
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <!-- ID книги -->
+                            <label asp-for="@Model.Id" for="CategoryID" class="form-label">ID</label>
+                            <input asp-for="@Model.Id" class="form-control form-control-sm" type="text" id="CategoryID" readonly>
+                        </div>
+                        <div class="col-md-9">
+                            <!-- Название книги -->
+                            <label asp-for="@Model.Name" for="BookName" class="form-label">Название</label>
+                            <input asp-for="@Model.Name" class="form-control form-control-sm" type="text" id="BookName" required>
+                            <div class="invalid-feedback">Пожалуйста, укажите название категории</div>
+                            <div class="valid-feedback">Ок!</div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-5">
+                        <div class="col-md-12">
+                            <!-- Кнопка Создать\Сохранить -->
+                            <button class="save-btn" type="submit">Сохранить категорию</button>
+                            <!-- Кнопка Отмена -->
+                            <a asp-action="CategoriesList" class="cancel-btn">Отмена</a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+<!-- Валидация -->
+<script>
+    // Отключение отправки форм при наличии недопустимых полей
+    (function () {
+        'use strict'
+
+        // Получаем формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+        var forms = document.querySelectorAll('.needs-validation')
+
+        // Предотвращаем отправку
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
