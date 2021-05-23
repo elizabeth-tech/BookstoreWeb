@@ -89,23 +89,36 @@ namespace BookstoreWeb.Controllers
         // Отображение страницы с полным описанием данных книги
         public ViewResult BookDescription(int Id) => View(bookRepository.Books.FirstOrDefault(b => b.Id == Id));
 
-        // Отображение страницы со всеми неотправленными заказами
-        public ViewResult OrdersList() => View(orderRepository.Orders.Where(o => !o.Shipped));
+        // Отображение страницы со всеми заказами
+        public ViewResult OrdersList() => View(orderRepository.Orders);
 
         // Маркируем заказ как отправленный
         [HttpPost]
         public IActionResult MarkShipped(int orderId)
         {
+            MarkOrder(orderId, true);
+            return RedirectToAction(nameof(OrdersList));
+        }
+
+        // Маркируем заказ как неотправленный
+        [HttpPost]
+        public IActionResult MarkUnshipped(int orderId)
+        {
+            MarkOrder(orderId, false);
+            return RedirectToAction(nameof(OrdersList));
+        }
+
+        // Метод маркировки заказа
+        private void MarkOrder(int orderId, bool mark)
+        {
             Order order = orderRepository.Orders
-                .FirstOrDefault(o => o.Id == orderId);
+               .FirstOrDefault(o => o.Id == orderId);
 
             if (order != null)
             {
-                order.Shipped = true;
+                order.Shipped = mark;
                 orderRepository.SaveOrder(order);
             }
-
-            return RedirectToAction(nameof(OrdersList));
         }
 
         // Отображение страницы со списком категорий

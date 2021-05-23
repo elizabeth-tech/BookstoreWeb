@@ -12,11 +12,6 @@
         <h3>Заказы</h3>
     </div>
 
-    <!-- Кнопка обновления данных -->
-    <div class="block-btn">
-        <button type="submit" class="update-btn">Обновить данные</button>
-    </div>
-
     <!-- Таблица неотправленных заказов -->
     <div class="block-table">
         <table class="table table-bordered table-sm">
@@ -25,11 +20,9 @@
                     <th>Неотправленные заказы</th>
                 </tr>
             </thead>
-
-            @if (Model.Count() > 0)
+            @if (Model.Where(o => !o.Shipped).Count() > 0)
             {
-
-                @foreach (Order order in Model)
+                @foreach (Order order in Model.Where(o => !o.Shipped))
                 {
                     <tr class="table-title">
                         <th class="mycol1"><span class="mytext">ID заказа:</span>@order.Id</th>
@@ -73,29 +66,41 @@
             </tr>
         </thead>
 
-        @*<tr class="table-title">
-            <th class="mycol1"><span class="mytext">ID заказа:</span>0239</th>
-            <th class="mycol2"><span class="mytext">Почтовый индекс:</span>HTFKD</th>
-            <th><span class="mytext-second">Название книг(и)</span></th>
-            <th><span class="mytext-second">Количество</span></th>
-            <th>
-                <button type="submit" class="btn-cancel">Отменить</button>
-            </th>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Наследница драконов</td>
-            <td>3</td>
-        </tr>
-
-        <tr>
-            <td></td>
-            <td></td>
-            <td>Наследница драконов</td>
-            <td>3</td>
-        </tr>*@
+        @if (Model.Where(o => o.Shipped).Count() > 0)
+        {
+            @foreach (Order order in Model.Where(o => o.Shipped))
+            {
+                <tr class="table-title">
+                    <th class="mycol1"><span class="mytext">ID заказа:</span>@order.Id</th>
+                    <th class="mycol2"><span class="mytext">Почтовый индекс:</span>@order.Postcode</th>
+                    <th><span class="mytext-second">Название книг(и)</span></th>
+                    <th><span class="mytext-second">Количество</span></th>
+                    <th>
+                        <form asp-action="MarkUnshipped" method="post">
+                            <input type="hidden" name="orderId" value="@order.Id" />
+                            <button type="submit" class="btn-cancel">Отменить</button>
+                        </form>
+                    </th>
+                </tr>
+                @foreach (CartLine line in order.Lines)
+                {
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>@line.Book.Name</td>
+                        <td>@line.Quantity</td>
+                    </tr>
+                }
+            }
+        }
+        else
+        {
+            <tr class="table-title text-center">
+                <th class="mycol1">
+                    <span class="mytext">Отправленных заказов пока нет</span>
+                </th>
+            </tr>
+        }
 
     </table>
 </main>
