@@ -30,7 +30,7 @@
 
             <!-- Логотип бренда -->
             <div class="navbar-brand">
-                <a href="#" class="to-site">
+                <a href="/" class="to-site">
                     <img src="~/img/logo.png" alt="logo" class="logo-img">
                     Bookstore
                 </a>
@@ -62,21 +62,21 @@
                             <ul class="nav flex-column">
 
                                 <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">
+                                    <a class="nav-link active" aria-current="page" asp-action="Index">
                                         <i class="fas fa-info-circle"></i>
                                         <span class="sidebar-text">Сервер</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#">
+                                    <a class="nav-link" aria-current="page" asp-action="OrdersList">
                                         <i class="fas fa-bags-shopping"></i>
                                         <span class="sidebar-text">Заказы</span>
                                     </a>
                                 </li>
 
                                 <li class="nav-item">
-                                    <a class="nav-link" aria-current="page" href="#">
+                                    <a class="nav-link" aria-current="page" asp-action="BooksList">
                                         <i class="fas fa-books"></i>
                                         <span class="sidebar-text">Книги</span>
                                     </a>

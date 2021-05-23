@@ -12,11 +12,13 @@ namespace BookstoreWeb.Controllers
     {
         private readonly IBookRepository bookRepository;
         private readonly ICategoryRepository categoryRepository;
+        private readonly IOrderRepository orderRepository;
 
-        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository)
+        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository)
         {
             this.bookRepository = bookRepository;
             this.categoryRepository = categoryRepository;
+            this.orderRepository = orderRepository;
         }
 
         // Отображение основной страницы админа, с данными о сервере
@@ -41,7 +43,7 @@ namespace BookstoreWeb.Controllers
             });
         }
 
-        // Сохранение измененных данных по книге в БД
+        // Сохранение отредактированных данных по книге в БД
         [HttpPost]
         public IActionResult Edit(CategoriesAndBooksViewModel bookvm)
         {
@@ -52,7 +54,7 @@ namespace BookstoreWeb.Controllers
                     bookvm.Book.Image = ConvertImage(bookvm.Image);
                 bookRepository.SaveBook(bookvm.Book);
                 TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
-                return RedirectToAction("BooksList");
+                return RedirectToAction(nameof(BooksList));
             }
             else // Что то не так
                 return View(bookvm); 
@@ -67,21 +69,43 @@ namespace BookstoreWeb.Controllers
             return imageData;
         }
 
-        public ViewResult Create() => View("Edit", 
+        // Создание новой книги
+        public ViewResult Create() => View(nameof(Edit), 
             new CategoriesAndBooksViewModel 
             { 
                 Book = new Book(),
                 Categories = categoryRepository.Categories 
             });
 
+        // Удаление книги
         public IActionResult Delete(int Id)
         {
             Book deletedBook = bookRepository.DeleteBook(Id);
             if(deletedBook != null)
                 TempData["message"] = $"Книга \"{deletedBook.Name}\" с ID:{deletedBook.Id} была удалена";
-            return RedirectToAction("BooksList");
+            return RedirectToAction(nameof(BooksList));
         }
 
+        // Отображение страницы с полным описанием данных книги
         public ViewResult BookDescription(int Id) => View(bookRepository.Books.FirstOrDefault(b => b.Id == Id));
+
+        // Отображение страницы со всеми неотправленными заказами
+        public ViewResult OrdersList() => View(orderRepository.Orders.Where(o => !o.Shipped));
+
+        // Маркируем заказ как отправленный
+        [HttpPost]
+        public IActionResult MarkShipped(int orderId)
+        {
+            Order order = orderRepository.Orders
+                .FirstOrDefault(o => o.Id == orderId);
+
+            if (order != null)
+            {
+                order.Shipped = true;
+                orderRepository.SaveOrder(order);
+            }
+
+            return RedirectToAction(nameof(OrdersList));
+        }
     }
 }

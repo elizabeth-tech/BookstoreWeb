@@ -16,29 +16,10 @@ namespace BookstoreWeb.Controllers
 
         public ViewResult Checkout() => View(new Order());
 
-        // Выбираем все неотправленные заказы
-        public ViewResult List() => View(repository.Orders.Where(o => !o.Shipped));
-
         public ViewResult Completed()
         {
             cart.Clear();
             return View();
-        }
-
-        // Маркируем заказ как отправленный
-        [HttpPost]
-        public IActionResult MarkShipped(int orderId)
-        {
-            Order order = repository.Orders
-                .FirstOrDefault(o => o.Id == orderId);
-
-            if(order != null)
-            {
-                order.Shipped = true;
-                repository.SaveOrder(order);
-            }
-
-            return RedirectToAction(nameof(List));
         }
 
         // Сохранение данных заказа в БД
