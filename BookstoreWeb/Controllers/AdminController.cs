@@ -1,4 +1,5 @@
-﻿using BookstoreWeb.Models.Interfaces;
+﻿using BookstoreWeb.Models.Entities;
+using BookstoreWeb.Models.Interfaces;
 using BookstoreWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -45,17 +46,13 @@ namespace BookstoreWeb.Controllers
         public IActionResult Edit(CategoriesAndBooksViewModel bookvm)
         {
             // Если загрузили новую картинку или оставили старую картинку при редактировании
-            if (bookvm.Image != null || bookvm.Book.Image != null) 
+            if (bookvm.Image != null || bookvm.Book.Image != null)
             {
-                if(bookvm.Image != null)
+                if (bookvm.Image != null)
                     bookvm.Book.Image = ConvertImage(bookvm.Image);
-                if (ModelState.IsValid)
-                {
-                    bookRepository.SaveBook(bookvm.Book);
-                    TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
-                    return RedirectToAction("BooksList");
-                }
-                else return View(bookvm);
+                bookRepository.SaveBook(bookvm.Book);
+                TempData["message"] = $"Книга \"{bookvm.Book.Name}\" с ID:{bookvm.Book.Id} успешно сохранена";
+                return RedirectToAction("BooksList");
             }
             else // Что то не так
                 return View(bookvm); 
@@ -69,5 +66,12 @@ namespace BookstoreWeb.Controllers
                 imageData = binaryReader.ReadBytes((int)formFile.Length);
             return imageData;
         }
+
+        public ViewResult Create() => View("Edit", 
+            new CategoriesAndBooksViewModel 
+            { 
+                Book = new Book(),
+                Categories = categoryRepository.Categories 
+            });
     }
 }

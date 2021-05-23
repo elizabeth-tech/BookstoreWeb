@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookstoreWeb.Migrations
 {
     [DbContext(typeof(BookstoreDbContext))]
-    [Migration("20210522095950_Initial")]
+    [Migration("20210523113021_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

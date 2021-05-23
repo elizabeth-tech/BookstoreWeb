@@ -9,14 +9,22 @@
 <!-- Страница создания и редактирования книги -->
 <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
     <div class="pt-3 pb-2 mb-3 border-bottom">
-        <h3>Создать\Редактировать книгу</h3>
+        @if (Model.Book.Id == 0)
+        {
+            <h3>Создать книгу</h3>
+        }
+        else
+        {
+            <h3>Редактировать книгу</h3>
+        }
     </div>
 
-    <div class="container-fluid">
+
+   <div class="container-fluid">
 
         <!-- Заголовок блока форм -->
         <div class="form-title">
-            <p>Заполните все поля, чтобы добавить книгу.</p>
+            <p>Заполните все поля, чтобы сохранить книгу.</p>
         </div>
 
         <!-- Блок формы с полями для заполнения -->
@@ -54,10 +62,11 @@
                         <!-- Цена -->
                         <div class="col-md-4">
                             <label asp-for="@Model.Book.Price" for="BookPrice" class="form-label">Цена (от 1,00 до 10 000,00 руб.)</label>
+
                             <input asp-for="@Model.Book.Price" class="form-control form-control-sm"
                                    type="text" id="BookPrice" required
                                    pattern="\d+(,\d{2})?"> <!-- Число в формате 1,34 (разделитель запятая) -->
-                            <div asp-validation-for="@Model.Book.Price" class="invalid-feedback">Пожалуйста, укажите корректную цену книги</div>
+                            <div class="invalid-feedback">Пожалуйста, введите корректную цену</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
                     </div>
@@ -72,12 +81,15 @@
                                 {
                                     <option selected disabled>Выберите...</option>
                                 }
-                                @foreach (Category category in Model.Categories)
+                                @if (Model.Categories != null)
                                 {
-                                    <option selected=@(Model.Book.Category?.Id == category.Id)
-                                            value="@category.Id">
-                                        @category.Name
-                                    </option>
+                                    @foreach (Category category in Model.Categories)
+                                    {
+                                        <option selected=@(Model.Book.Category?.Id == category.Id)
+                                                value="@category.Id">
+                                            @category.Name
+                                        </option>
+                                    }
                                 }
                             </select>
                             <div class="invalid-feedback">Пожалуйста, выберите категорию книги</div>
@@ -101,7 +113,7 @@
                             <input asp-for="@Model.Book.Circulation" class="form-control form-control-sm"
                                    type="text" id="BookEdition" required
                                    pattern="[0-9]{,10}">
-                            <div asp-validation-for="@Model.Book.Circulation" class="invalid-feedback">Пожалуйста, укажите тираж книги</div>
+                            <div asp-validation-for="@Model.Book.Circulation" class="invalid-feedback">Пожалуйста, укажите корректный тираж книги</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
                         <!-- Количество страниц -->
@@ -110,7 +122,7 @@
                             <input asp-for="@Model.Book.PageCount" class="form-control form-control-sm"
                                    type="text" id="BookPage" required
                                    pattern="[0-9]{,6}">
-                            <div asp-validation-for="@Model.Book.PageCount" class="invalid-feedback">Пожалуйста, укажите количество страниц книги</div>
+                            <div asp-validation-for="@Model.Book.PageCount" class="invalid-feedback">Пожалуйста, укажите корректное количество страниц книги</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
                         <!-- Год издания -->
