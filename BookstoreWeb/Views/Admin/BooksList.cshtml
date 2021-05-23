@@ -52,8 +52,8 @@
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                     <li>
-
-                                        <button class="dropdown-item" type="button">Подробней</button>
+                                        <a class="dropdown-item" asp-action="BookDescription" asp-route-Id="@book.Id">Подробней</a>
+                                        @*<button class="dropdown-item" type="button">Подробней</button>*@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-action="Edit" asp-route-Id="@book.Id">Редактировать</a>

@@ -81,5 +81,7 @@ namespace BookstoreWeb.Controllers
                 TempData["message"] = $"Книга \"{deletedBook.Name}\" с ID:{deletedBook.Id} была удалена";
             return RedirectToAction("BooksList");
         }
+
+        public ViewResult BookDescription(int Id) => View(bookRepository.Books.FirstOrDefault(b => b.Id == Id));
     }
 }
