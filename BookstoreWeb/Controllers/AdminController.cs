@@ -78,7 +78,7 @@ namespace BookstoreWeb.Controllers
             });
 
         // Удаление книги
-        public IActionResult Delete(int Id)
+        public IActionResult DeleteBook(int Id)
         {
             Book deletedBook = bookRepository.DeleteBook(Id);
             if(deletedBook != null)
@@ -132,5 +132,14 @@ namespace BookstoreWeb.Controllers
 
         // Создание новой категории
         public ViewResult CreateCategory() => View(nameof(EditCategory), new Category());
+
+        // Удаление книги
+        public IActionResult DeleteCategory(int Id)
+        {
+            Category deletedCategory = categoryRepository.DeleteCategory(Id);
+            if (deletedCategory != null)
+                TempData["message"] = $"Категория \"{deletedCategory.Name}\" с ID:{deletedCategory.Id} была удалена";
+            return RedirectToAction(nameof(CategoriesList));
+        }
     }
 }
