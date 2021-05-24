@@ -1,5 +1,43 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
+    Layout = "_AdminLayout";
 }
+
+<link rel="stylesheet" href="~/css/admin/admin_database.css">
+
+<!-- Управление БД -->
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+    <div class="pt-3 pb-2 mb-3 border-bottom">
+        <h3>Управление БД</h3>
+    </div>
+
+    <!-- Данные по базе -->
+    <div class="mt-4 mb-2">
+        <span class="count-books">
+            Количество книг в БД:
+            <span class="count">50</span>
+        </span>
+    </div>
+    <div class="mt-4 mb-2">
+        <span class="count-books">
+            Количество категорий в БД:
+            <span class="count">7</span>
+        </span>
+    </div>
+    <div class="mt-4 mb-2">
+        <span class="count-books">
+            Количество всех заказов в БД:
+            <span class="count">17</span>
+        </span>
+    </div>
+
+    <!-- Кнопка Очистить -->
+    <div class="block-clear">
+        <button type="submit" class="clear-data">Очистить все данные</button>
+    </div>
+
+    <!-- Кнопка Заполнить -->
+    <div class="block-seed">
+        <button type="submit" class="seed-data">Заполнить данными</button>
+    </div>
+
+</main>

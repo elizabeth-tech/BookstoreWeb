@@ -74,8 +74,9 @@ namespace BookstoreWeb
             });
 
             // Заполнение БД искусственными данными
-            BookstoreInitializer initializer = new BookstoreInitializer();
-            initializer.Initialize(app);
+            //BookstoreInitializer initializer = new BookstoreInitializer();
+            //initializer.Initialize(app);
+            BookstoreInitializerProduction.SeedData(app);
         }
     }
 }

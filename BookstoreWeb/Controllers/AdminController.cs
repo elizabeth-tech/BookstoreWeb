@@ -1,4 +1,5 @@
-﻿using BookstoreWeb.Models.Entities;
+﻿using BookstoreWeb.Models;
+using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using BookstoreWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -155,5 +156,14 @@ namespace BookstoreWeb.Controllers
                 TempData["message"] = $"Категория \"{deletedCategory.Name}\" с ID:{deletedCategory.Id} была удалена";
             return RedirectToAction(nameof(CategoriesList));
         }
+
+        /* Управление БД */
+
+        // Заполнение БД искусственными данными
+        //public IActionResult SeedData()
+        //{    
+        //    BookstoreInitializer initializer = new BookstoreInitializer();
+        //    initializer.Initialize(app);
+        //}
     }
 }
