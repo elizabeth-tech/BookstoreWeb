@@ -2,6 +2,7 @@
 using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using BookstoreWeb.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
@@ -9,6 +10,7 @@ using System.Linq;
 
 namespace BookstoreWeb.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private readonly IBookRepository bookRepository;

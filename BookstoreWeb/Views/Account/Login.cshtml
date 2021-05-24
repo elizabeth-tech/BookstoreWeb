@@ -1,0 +1,78 @@
+﻿@model LoginViewModel
+
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/login.css">
+
+<!-- Страница входа админа -->
+<main>
+    <div class="container sign-in mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-5 col-md-7 col-sm-9">
+
+                <h5 class="mb-5">Здравствуйте, администратор!</h5>
+
+                <div class="text-danger" asp-validation-summary="All"></div>
+                <form class="needs-validation" asp-action="Login" asp-controller="Account" method="post" novalidate>
+                    <input type="hidden" asp-for="ReturnUrl" />
+
+                    <!-- Логин -->
+                    <div class="mb-4">
+                        <label asp-for="Name" for="Login" class="form-label">Логин</label>
+                        <input asp-for="Name" class="form-control" type="text" id="Login" required>
+                        <div asp-validation-for="Name" class="invalid-feedback"></div>
+                        <div class="invalid-feedback">Пожалуйста, введите свой логин</div>
+                        <div class="valid-feedback">Ок!</div>
+                    </div>
+
+
+                    <!-- Пароль -->
+                    <div class="mb-4">
+                        <label asp-for="Password" for="Password" class="form-label">Пароль</label>
+                        <input asp-for="Password" class="form-control" type="password" id="Password" required>
+                        <div asp-validation-for="Password" class="invalid-feedback"></div>
+                        <div class="invalid-feedback">Пожалуйста, введите свой пароль</div>
+                        <div class="valid-feedback">Ок!</div>
+                    </div>
+
+                    <!-- Кнопка Войти -->
+                    <div class="text-center">
+                        <button class="signin-btn" type="submit">Войти</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+<script>
+        // Пример стартового JavaScript для отключения отправки форм при наличии недопустимых полей
+        (function () {
+            'use strict'
+
+            // Получите все формы, к которым мы хотим применить пользовательские стили проверки Bootstrap
+            var forms = document.querySelectorAll('.needs-validation')
+
+            // Зацикливайтесь на них и предотвращайте отправку
+            Array.prototype.slice.call(forms)
+                .forEach(function (form) {
+                    form.addEventListener('submit', function (event) {
+                        if (!form.checkValidity()) {
+                            event.preventDefault()
+                            event.stopPropagation()
+                        }
+
+                        form.classList.add('was-validated')
+                    }, false)
+                })
+        })()
+</script>

@@ -4,6 +4,7 @@ using BookstoreWeb.Models.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +25,12 @@ namespace BookstoreWeb
             services.AddDbContext<BookstoreDbContext>(opts => {
                 opts.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]);
             });
+
+            services.AddDbContext<AppIdentityDbContext>(options => options
+                .UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]));
+
+            services.AddIdentity<IdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             // Добавление служб репозиториев
             services.AddScoped<IBookRepository, BookRepository>();
@@ -51,6 +58,9 @@ namespace BookstoreWeb
             app.UseSession();
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 // Выводит указанную страницу книг заданного жанра (/Драма/Page2) +
@@ -77,6 +87,7 @@ namespace BookstoreWeb
             //BookstoreInitializer initializer = new BookstoreInitializer();
             //initializer.Initialize(app);
             BookstoreInitializerProduction.SeedData(app);
+            IdentityInitializer.Initialize(app);
         }
     }
 }

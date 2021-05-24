@@ -46,7 +46,8 @@
             <!-- Кнопка Выход -->
             <ul class="navbar-nav">
                 <li class="nav-item text-nowrap">
-                    <button class="out-btn" type="submit">Выйти из аккаунта</button>
+                    <a class="out-btn" asp-action="Logout" asp-controller="Account">Выйти из аккаунта</a>
+                    @*<button class="out-btn" type="submit">Выйти из аккаунта</button>*@
                 </li>
             </ul>
         </header>
