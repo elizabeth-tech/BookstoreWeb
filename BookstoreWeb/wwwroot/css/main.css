@@ -131,6 +131,7 @@ li.nav-link.active.category:hover{
 }
 
 .read-btn {
+    color: black;
     font-weight: 900;
     text-decoration: none;
     outline: none;

@@ -1,0 +1,93 @@
+﻿@model Book
+
+@{
+    Layout = "_Layout";
+}
+
+<link rel="stylesheet" href="~/css/book.css">
+
+<!-- Полная информация о книге для пользователя -->
+<main>
+    <!-- Основной блок с подробным описанием книги -->
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <!-- Картинка книги -->
+            <div class="col-lg-3 col-sm-6">
+                <img class="card-img-top" alt="book" src=@("data:image/jpeg;base64," + Convert.ToBase64String(Model.Image))>
+            </div>
+
+            <!-- Блок общих данных -->
+            <div class="col-lg-6 col-sm-6">
+                <h4 class="text-center book-title">@Model.Name</h4>
+                <div class="row">
+                    <!-- Колонка с таблицей -->
+                    <div class="col-lg-9 col-sm-6">
+                        <div class="description">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th>Автор:</th>
+                                        <td>@Model.Author</td>
+                                    </tr>
+                                    <tr>
+                                        <th>ID товара:</th>
+                                        <td>@Model.Id</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Издательство:</th>
+                                        <td>@Model.Publisher</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Год издания:</th>
+                                        <td>@Model.YearPublishing</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Количество страниц:</th>
+                                        <td>@Model.PageCount</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Тираж:</th>
+                                        <td>@Model.Circulation</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Колонка с карточкой В корзину -->
+                    <div class="col-lg-3">
+                        <div class="row justify-content-center">
+                            <div class="buy-block">
+                                <div class="buy-block-style">
+                                    <div class="block-text text-center">
+                                        <span class="price">@Model.Price.ToString("c")</span>
+                                        <div class="block-btn">
+                                            <!-- Кнопка В корзину -->
+                                            <form id="@Model.Id" asp-action="AddToCart" asp-controller="Cart" method="post">
+                                                <input type="hidden" asp-for="Id" />
+                                                <input type="hidden" name="returnUrl"
+                                                       value="@ViewContext.HttpContext.Request.PathAndQuery()" />
+                                                <button type="submit" class="cart-btn">В корзину</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Аннотация -->
+            <div class="row justify-content-center">
+                <div class="col-lg-9 col-sm-12">
+                    <div class="annotation-title">
+                        <h5>Аннотация</h5>
+                    </div>
+                    <div class="annotation-text">@Model.Annotation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>

@@ -40,5 +40,10 @@ namespace BookstoreWeb.Controllers
                 CurrentCategory = category
             });
         }
+
+        public ViewResult BookDescription(int Id)
+        {
+            return View(bookRepository.Books.FirstOrDefault(b => b.Id == Id));
+        }
     }
 }
