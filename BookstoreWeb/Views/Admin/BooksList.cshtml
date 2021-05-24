@@ -57,11 +57,9 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                     <li>
                                         <a class="dropdown-item" asp-action="BookDescription" asp-route-Id="@book.Id">Подробней</a>
-                                        @*<button class="dropdown-item" type="button">Подробней</button>*@
                                     </li>
                                     <li>
                                         <a class="dropdown-item" asp-action="EditBook" asp-route-Id="@book.Id">Редактировать</a>
-                                        @*<button class="dropdown-item" type="button">Редактировать</button>*@
                                     </li>
                                     <li>
                                         <form asp-action="DeleteBook" method="post">

@@ -20,9 +20,7 @@ namespace BookstoreWeb.Models
         public void SaveBook(Book book)
         {
             if (book.Id == 0)
-            {
                 context.Books.Add(book);
-            }
             else
             {
                 Book dbEntry = context.Books.FirstOrDefault(b => b.Id == book.Id);

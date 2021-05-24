@@ -1,5 +1,4 @@
-﻿using BookstoreWeb.Models;
-using BookstoreWeb.Models.Entities;
+﻿using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using BookstoreWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -17,18 +16,11 @@ namespace BookstoreWeb.Controllers
         private readonly ICategoryRepository categoryRepository;
         private readonly IOrderRepository orderRepository;
 
-        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository)
-        {
-            this.bookRepository = bookRepository;
-            this.categoryRepository = categoryRepository;
-            this.orderRepository = orderRepository;
-        }
+        public AdminController(IBookRepository bookRepository, ICategoryRepository categoryRepository, IOrderRepository orderRepository) =>
+            (this.bookRepository, this.categoryRepository, this.orderRepository) = (bookRepository, categoryRepository, orderRepository);
 
         // Отображение основной страницы админа, с данными о сервере
-        public ViewResult Index()
-        {
-            return View();
-        }
+        public ViewResult Index() => View();
 
         // Отображение страницы со списком книг
         public ViewResult BooksList()
@@ -38,14 +30,11 @@ namespace BookstoreWeb.Controllers
         }
 
         // Отображение страницы с выбранной книгой, для редактирования или создания новой
-        public ViewResult EditBook(int Id)
+        public ViewResult EditBook(int Id) => View(new CategoriesAndBooksViewModel
         {
-            return View(new CategoriesAndBooksViewModel
-            {
-                Categories = categoryRepository.Categories,
-                Book = bookRepository.Books.FirstOrDefault(b => b.Id == Id)
-            });
-        }
+            Categories = categoryRepository.Categories,
+            Book = bookRepository.Books.FirstOrDefault(b => b.Id == Id)
+        });
 
         // Сохранение отредактированных данных по книге в БД
         [HttpPost]
@@ -74,7 +63,7 @@ namespace BookstoreWeb.Controllers
         }
 
         // Создание новой книги
-        public ViewResult CreateBook() => View(nameof(EditBook), 
+        public ViewResult CreateBook() => View(nameof(EditBook),
             new CategoriesAndBooksViewModel 
             { 
                 Book = new Book(),
@@ -126,17 +115,11 @@ namespace BookstoreWeb.Controllers
         }
 
         // Отображение страницы со списком категорий
-        public ViewResult CategoriesList()
-        {
-            return View(categoryRepository.Categories);
-        }
+        public ViewResult CategoriesList() => View(categoryRepository.Categories);
 
         // Отображение страницы с выбранной категорией, для редактирования или создания новой
-        public ViewResult EditCategory(int Id)
-        {
-            return View(categoryRepository.Categories
+        public ViewResult EditCategory(int Id) => View(categoryRepository.Categories
                 .FirstOrDefault(c => c.Id == Id));
-        }
 
         // Сохранение отредактированных данных по категории в БД
         [HttpPost]

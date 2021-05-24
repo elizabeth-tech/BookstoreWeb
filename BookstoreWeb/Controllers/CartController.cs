@@ -11,23 +11,18 @@ namespace BookstoreWeb.Controllers
         private readonly IBookRepository bookRepository;
         private readonly Cart cart;
 
-        public CartController(IBookRepository bookRepository, Cart cart)
-        {
-            this.bookRepository = bookRepository;
-            this.cart = cart;
-        }
+        public CartController(IBookRepository bookRepository, Cart cart) => 
+            (this.bookRepository, this.cart) = (bookRepository, cart);
+
 
         // Извлекает объект Cart из состояния сеанса и использует
         // его при создании объекта CartIndexViewModel, который затем передается методу
         // View() для применения в качестве модели представления.
-        public ViewResult Index(string returnUrl)
+        public ViewResult Index(string returnUrl) => View(new CartIndexViewModel
         {
-            return View(new CartIndexViewModel
-            {
-                Cart = cart,
-                ReturnUrl = returnUrl
-            });
-        }
+            Cart = cart,
+            ReturnUrl = returnUrl
+        });
 
         public RedirectToActionResult AddToCart(long Id, string returnUrl)
         {

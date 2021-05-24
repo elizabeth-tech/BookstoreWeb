@@ -15,13 +15,10 @@ namespace BookstoreWeb.Controllers
         public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signInMgr) =>
             (userManager, signInManager) = (userMgr, signInMgr);
 
-        public ViewResult Login(string returnUrl)
+        public ViewResult Login(string returnUrl) => View(new LoginViewModel
         {
-            return View(new LoginViewModel
-            {
-                ReturnUrl = returnUrl
-            });
-        }
+            ReturnUrl = returnUrl
+        });
 
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -11,8 +11,6 @@ namespace BookstoreWeb.Models
     {
         public static void SeedData(IApplicationBuilder app)
         {
-            //BookstoreDbContext dbContext = app.ApplicationServices
-            //.GetRequiredService<BookstoreDbContext>();
             BookstoreDbContext dbContext = app.ApplicationServices
             .CreateScope().ServiceProvider.GetRequiredService<BookstoreDbContext>();
 

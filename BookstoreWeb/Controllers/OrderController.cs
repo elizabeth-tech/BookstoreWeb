@@ -1,14 +1,12 @@
 ﻿using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace BookstoreWeb.Controllers
 {
     public class OrderController : Controller
     {
         private readonly IOrderRepository repository;
-
         private readonly Cart cart;
 
         public OrderController(IOrderRepository repoService, Cart cartService) =>
