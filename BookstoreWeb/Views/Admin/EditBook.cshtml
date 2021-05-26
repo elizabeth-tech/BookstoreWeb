@@ -61,11 +61,21 @@
                         </div>
                         <!-- Цена -->
                         <div class="col-md-4">
-                            <label asp-for="@Model.Book.Price" for="BookPrice" class="form-label">Цена (от 1,00 до 10 000,00 руб.)</label>
-
-                            <input asp-for="@Model.Book.Price" class="form-control form-control-sm"
-                                   type="text" id="BookPrice" required
-                                   pattern="\d+(,\d{2})?"> <!-- Число в формате 1,34 (разделитель запятая) -->
+                            @if (Model.Book.Id == 0) // Если мы создаем книгу, то значение должно быть пустым при загрузке
+                            {
+                                <label asp-for="@Model.Book.Price" for="BookPrice" class="form-label">Цена (от 1,00 до 10 000,00 руб.)</label>
+                                <input asp-for="@Model.Book.Price" class="form-control form-control-sm"
+                                       type="text" id="BookPrice" required
+                                       value=""
+                                       pattern="\d+(,\d{2})?"> <!-- Число в формате 1,34 (разделитель запятая) -->
+                            }
+                            else
+                            {
+                                <label asp-for="@Model.Book.Price" for="BookPrice" class="form-label">Цена (от 1,00 до 10 000,00 руб.)</label>
+                                <input asp-for="@Model.Book.Price" class="form-control form-control-sm"
+                                       type="text" id="BookPrice" required
+                                       pattern="\d+(,\d{2})?"> <!-- Число в формате 1,34 (разделитель запятая) -->
+                            }
                             <div class="invalid-feedback">Пожалуйста, введите корректную цену</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
@@ -109,28 +119,61 @@
                     <div class="row mb-4">
                         <div class="col-md-3">
                             <!-- Тираж -->
-                            <label asp-for="@Model.Book.Circulation" for="BookEdition" class="form-label">Тираж (от 1 и более)</label>
-                            <input asp-for="@Model.Book.Circulation" class="form-control form-control-sm"
-                                   type="text" id="BookEdition" required
-                                   pattern="[0-9]{,10}">
+                            @if (Model.Book.Id == 0) // Если мы создаем книгу, то значение должно быть пустым при загрузке
+                            {
+                                <label asp-for="@Model.Book.Circulation" for="BookEdition" class="form-label">Тираж (от 1 и более)</label>
+                                <input asp-for="@Model.Book.Circulation" class="form-control form-control-sm"
+                                       type="text" id="BookEdition" required
+                                       value=""
+                                       pattern="[0-9]{,10}">
+                            }
+                            else
+                            {
+                                <label asp-for="@Model.Book.Circulation" for="BookEdition" class="form-label">Тираж (от 1 и более)</label>
+                                <input asp-for="@Model.Book.Circulation" class="form-control form-control-sm"
+                                       type="text" id="BookEdition" required
+                                       pattern="[0-9]{,10}">
+                            }
                             <div asp-validation-for="@Model.Book.Circulation" class="invalid-feedback">Пожалуйста, укажите корректный тираж книги</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
                         <!-- Количество страниц -->
                         <div class="col-md-5">
-                            <label asp-for="@Model.Book.PageCount" for="BookPage" class="form-label">Количество страниц (от 1 и более)</label>
-                            <input asp-for="@Model.Book.PageCount" class="form-control form-control-sm"
-                                   type="text" id="BookPage" required
-                                   pattern="[0-9]{,6}">
+                            @if (Model.Book.Id == 0) // Если мы создаем книгу, то значение должно быть пустым при загрузке
+                            {
+                                <label asp-for="@Model.Book.PageCount" for="BookPage" class="form-label">Количество страниц (от 1 и более)</label>
+                                <input asp-for="@Model.Book.PageCount" class="form-control form-control-sm"
+                                       type="text" id="BookPage" required
+                                       value=""
+                                       pattern="[0-9]{,6}">
+                            }
+                            else
+                            {
+                                <label asp-for="@Model.Book.PageCount" for="BookPage" class="form-label">Количество страниц (от 1 и более)</label>
+                                <input asp-for="@Model.Book.PageCount" class="form-control form-control-sm"
+                                       type="text" id="BookPage" required
+                                       pattern="[0-9]{,6}">
+                            }
                             <div asp-validation-for="@Model.Book.PageCount" class="invalid-feedback">Пожалуйста, укажите корректное количество страниц книги</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>
                         <!-- Год издания -->
                         <div class="col-md-4">
-                            <label asp-for="@Model.Book.YearPublishing" for="BookYear" class="form-label">Год издания (от 1900 до 2021)</label>
-                            <input asp-for="@Model.Book.YearPublishing" class="form-control form-control-sm"
-                                   type="text" id="BookYear" required
-                                   pattern="[0-9]{4}">
+                            @if (Model.Book.Id == 0) // Если мы создаем книгу, то значение должно быть пустым при загрузке
+                            {
+                                <label asp-for="@Model.Book.YearPublishing" for="BookYear" class="form-label">Год издания (от 1900 до 2021)</label>
+                                <input asp-for="@Model.Book.YearPublishing" class="form-control form-control-sm"
+                                       type="text" id="BookYear" required
+                                       value=""
+                                       pattern="19\d{2}|20\d{2}">
+                            }
+                            else
+                            {
+                                <label asp-for="@Model.Book.YearPublishing" for="BookYear" class="form-label">Год издания (от 1900 до 2021)</label>
+                                <input asp-for="@Model.Book.YearPublishing" class="form-control form-control-sm"
+                                       type="text" id="BookYear" required
+                                       pattern="19\d{2}|20\d{2}">
+                            }
                             <div asp-validation-for="@Model.Book.YearPublishing" class="invalid-feedback">Пожалуйста, укажите корректный год издания книги</div>
                             <div class="valid-feedback">Ок!</div>
                         </div>

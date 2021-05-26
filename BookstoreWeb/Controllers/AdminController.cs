@@ -1,4 +1,5 @@
-﻿using BookstoreWeb.Models.Entities;
+﻿using BookstoreWeb.Models;
+using BookstoreWeb.Models.Entities;
 using BookstoreWeb.Models.Interfaces;
 using BookstoreWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
@@ -9,7 +10,7 @@ using System.Linq;
 
 namespace BookstoreWeb.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AdminController : Controller
     {
         private readonly IBookRepository bookRepository;
@@ -76,6 +77,8 @@ namespace BookstoreWeb.Controllers
             Book deletedBook = bookRepository.DeleteBook(Id);
             if(deletedBook != null)
                 TempData["message"] = $"Книга \"{deletedBook.Name}\" с ID:{deletedBook.Id} была удалена";
+            else
+                TempData["alert"] = $"Невозможно удалить книгу. Она уже находится в заказах";
             return RedirectToAction(nameof(BooksList));
         }
 
@@ -144,11 +147,13 @@ namespace BookstoreWeb.Controllers
 
         /* Управление БД */
 
+        public ViewResult DatabaseControl() => View(bookRepository.Books);
+
         // Заполнение БД искусственными данными
-        //public IActionResult SeedData()
-        //{    
-        //    BookstoreInitializer initializer = new BookstoreInitializer();
-        //    initializer.Initialize(app);
-        //}
+        public IActionResult SeedData()
+        {
+            BookstoreInitializerProduction.SeedData(HttpContext.RequestServices);
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

@@ -26,11 +26,11 @@ namespace BookstoreWeb
                 opts.UseSqlServer(Configuration["ConnectionStrings:BookstoreConnection"]);
             });
 
-            services.AddDbContext<AppIdentityDbContext>(options => options
-                .UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]));
+            //services.AddDbContext<AppIdentityDbContext>(options => options
+            //    .UseSqlServer(Configuration["ConnectionStrings:IdentityConnection"]));
 
-            services.AddIdentity<IdentityUser, IdentityRole>()
-                .AddEntityFrameworkStores<AppIdentityDbContext>();
+            //services.AddIdentity<IdentityUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<AppIdentityDbContext>();
 
             // Добавление служб репозиториев
             services.AddScoped<IBookRepository, BookRepository>();
@@ -60,8 +60,8 @@ namespace BookstoreWeb
             app.UseSession();
             app.UseRouting();
 
-            app.UseAuthentication();
-            app.UseAuthorization();
+            //app.UseAuthentication();
+            //app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
@@ -88,8 +88,8 @@ namespace BookstoreWeb
             // Заполнение БД искусственными данными
             //BookstoreInitializer initializer = new BookstoreInitializer();
             //initializer.Initialize(app);
-            BookstoreInitializerProduction.SeedData(app);
-            IdentityInitializer.Initialize(app);
+            //BookstoreInitializerProduction.SeedData(app);
+            //IdentityInitializer.Initialize(app);
         }
     }
 }

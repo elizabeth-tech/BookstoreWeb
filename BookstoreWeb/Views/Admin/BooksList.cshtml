@@ -16,6 +16,10 @@
     {
         <div class="alert alert-success">@TempData["message"]</div>
     }
+    @if(TempData["alert"] != null)
+    {
+        <div class="alert alert-danger">@TempData["alert"]</div>
+    }
 
     <div class="mt-4 mb-2">
         <span class="count-books">Количество книг в базе данных: @ViewBag.Count</span>

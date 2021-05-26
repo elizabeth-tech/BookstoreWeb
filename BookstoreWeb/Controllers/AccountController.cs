@@ -1,4 +1,5 @@
-﻿using BookstoreWeb.Models.ViewModels;
+﻿using BookstoreWeb.Models;
+using BookstoreWeb.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,11 +10,16 @@ namespace BookstoreWeb.Controllers
     public class AccountController : Controller
     {
         private readonly UserManager<IdentityUser> userManager;
-
         private readonly SignInManager<IdentityUser> signInManager;
 
-        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signInMgr) =>
+        public AccountController(UserManager<IdentityUser> userMgr, SignInManager<IdentityUser> signInMgr)
+        {
             (userManager, signInManager) = (userMgr, signInMgr);
+
+            // БД Identity будет заполняться каждый раз, когда создается
+            // объект AccountController для обработки НТТР-запроса
+            IdentityInitializer.Initialize(userMgr).Wait();
+        }
 
         public ViewResult Login(string returnUrl) => View(new LoginViewModel
         {

@@ -132,3 +132,16 @@
     background-color: rgb(58, 226, 134);
     color: black;
 }
+
+.seed-data-disabled {
+    font-family: 'Conv_Montserrat-Medium';
+    text-decoration: none;
+    outline: none;
+    font-size: 15px;
+    padding: 3px 25px;
+    border: 2px solid rgb(114, 114, 114);
+    background-color: rgb(114, 114, 114);
+    color: white;
+    border-radius: 25px;
+    transition: .2s ease-in-out;
+}

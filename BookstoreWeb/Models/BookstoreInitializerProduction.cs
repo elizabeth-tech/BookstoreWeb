@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.IO;
 using System.Linq;
 
@@ -9,15 +10,18 @@ namespace BookstoreWeb.Models
 {
     public static class BookstoreInitializerProduction
     {
-        public static void SeedData(IApplicationBuilder app)
+        //public static void SeedData(IApplicationBuilder app)
+        public static void SeedData(IServiceProvider service)
         {
-            BookstoreDbContext dbContext = app.ApplicationServices
-            .CreateScope().ServiceProvider.GetRequiredService<BookstoreDbContext>();
+            //BookstoreDbContext dbContext = app.ApplicationServices
+            //.CreateScope().ServiceProvider.GetRequiredService<BookstoreDbContext>();
 
-            if (dbContext.Database.GetPendingMigrations().Any())
-                dbContext.Database.Migrate(); // Migrate - создает бд, если ее нет и накатывает все миграции
+            //if (dbContext.Database.GetPendingMigrations().Any())
+            //dbContext.Database.Migrate(); // Migrate - создает бд, если ее нет и накатывает все миграции
 
-            if (dbContext.Books.Any()) return; // Если есть хоть одна книга, то выходим из инициализатора
+            //if (dbContext.Books.Any()) return; // Если есть хоть одна книга, то выходим из инициализатора
+
+            BookstoreDbContext dbContext = service.GetRequiredService<BookstoreDbContext>();
 
             // Заполнение категорий
             dbContext.Categories.AddRange(

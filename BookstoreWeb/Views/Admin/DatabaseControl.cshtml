@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<Book>
+
+@{
     Layout = "_AdminLayout";
 }
 
@@ -10,34 +12,35 @@
         <h3>Управление БД</h3>
     </div>
 
-    <!-- Данные по базе -->
+    <!-- Данные -->
     <div class="mt-4 mb-2">
         <span class="count-books">
             Количество книг в БД:
-            <span class="count">50</span>
-        </span>
-    </div>
-    <div class="mt-4 mb-2">
-        <span class="count-books">
-            Количество категорий в БД:
-            <span class="count">7</span>
-        </span>
-    </div>
-    <div class="mt-4 mb-2">
-        <span class="count-books">
-            Количество всех заказов в БД:
-            <span class="count">17</span>
+            <span class="count">@Model.Count()</span>
         </span>
     </div>
 
     <!-- Кнопка Очистить -->
-    <div class="block-clear">
+    @*<div class="block-clear">
         <button type="submit" class="clear-data">Очистить все данные</button>
-    </div>
+    </div>*@
 
-    <!-- Кнопка Заполнить -->
-    <div class="block-seed">
-        <button type="submit" class="seed-data">Заполнить данными</button>
-    </div>
+    @if (Model.Count() == 0)
+    {
+        <!-- Кнопка Заполнить -->
+        <div class="block-seed">
+            <form asp-action="SeedData" method="post">
+                <button type="submit" class="seed-data">Заполнить данными</button>
+            </form>
+        </div>
+    }
+    else
+    {
+        <!-- Кнопка Заполнить -->
+        <div class="block-seed">
+            <button type="submit" class="seed-data-disabled" disabled>Заполнить данными</button>
+        </div>
+    }
+
 
 </main>
