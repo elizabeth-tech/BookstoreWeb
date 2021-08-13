@@ -9,3 +9,5 @@
 В качестве ORM использовался Entity Framework.
 
 Фронтенд: HTML5, CSS3, Bootstrap 5.
+
+Демонстрация сайта: https://www.youtube.com/watch?v=MWZ5t2eg0zU&ab_channel=AliceSwan
